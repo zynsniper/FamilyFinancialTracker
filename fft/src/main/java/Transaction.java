@@ -10,7 +10,7 @@ public class Transaction {
         vendor = venIn;
         category = catIn;
         total = totalIn;
-        if(total > 0){debit = true;}else{debit = false;}
+        if(total < 0){debit = true;}else{debit = false;}
     }
 
     public Transaction(Vendor venIn, double totalIn){
