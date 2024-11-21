@@ -50,7 +50,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	
 	//Contributing Authors: O Darrah
 	private Node assignButton() {
-		Button results = new Button();
+		Button results = new Button("Assign");
 		results.setPrefWidth(70);
 		//results.setOnAction();
 		return results;
@@ -60,6 +60,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	private Node formatAssignButton(Node assignButton) {
 		HBox results = new HBox();
 		results.setPadding(new Insets(10,10,10,10));
+		results.getChildren().add(assignButton);
 		return results;
 	}
 	
