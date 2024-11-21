@@ -16,11 +16,13 @@ public class BankStatementViewBuilder implements Builder<Region>{
 	
 	private StringProperty bankStatementProperty;
 	private Runnable browseHandler;
+	private Runnable nextPageHandler;
 	
-	//Contributing Authors: W Elliott, D MacIssac
-	public BankStatementViewBuilder(StringProperty bankStatementProperty, Runnable browseHandler) {
+	//Contributing Authors: O Darrah, W Elliott, D MacIssac
+	public BankStatementViewBuilder(StringProperty bankStatementProperty, Runnable browseHandler, Runnable nextPageHandler) {
 		this.bankStatementProperty = bankStatementProperty;
 		this.browseHandler = browseHandler;
+		this.nextPageHandler = nextPageHandler;
 	}
 	
 	//Contributing Authors: O Darrah, W Elliott, D MacIssac
@@ -84,7 +86,7 @@ public class BankStatementViewBuilder implements Builder<Region>{
 		Button results = new Button("Next");
 		results.setId("View-Transaction-List");
 		results.setPrefWidth(70);
-		results.setOnAction(e->Main.getMainLayout().setCenter(new TransactionListController().getView()));
+		results.setOnAction(e->nextPageHandler.run());
 		//if file has not been selected, display error, add later
 		return results;
 	}

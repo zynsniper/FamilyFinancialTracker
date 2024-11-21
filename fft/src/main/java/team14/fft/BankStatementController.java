@@ -11,10 +11,10 @@ public class BankStatementController {
 	private Builder<Region> builder;
 	private TransactionsModel model;
 	
-	//Contributing Authors: W Elliott, D MacIssac
+	//Contributing Authors: O Darrah, W Elliott, D MacIssac
 	public BankStatementController(TransactionsModel model) {
 		this.model = model;
-		this.builder = new BankStatementViewBuilder(model.bankStatementProperty(), this::browseFileExplorer);
+		this.builder = new BankStatementViewBuilder(model.bankStatementProperty(), this::browseFileExplorer, this::nextPage);
 	}
 	
 	//Contributing Authors: W Elliott, D MacIssac
@@ -31,5 +31,10 @@ public class BankStatementController {
 		if(file != null) {
 			model.setBankStatement(file.getName());
 		}
+	}
+	
+	//Contributing Authors: O Darrah
+	private void nextPage() {
+		Main.getMainLayout().setCenter(new TransactionListController().getView());
 	}
 }
