@@ -59,7 +59,7 @@ public class BankStatementViewBuilder implements Builder<Region>{
 	private Node browseButton() {
 		Button results = new Button("Browse...");
 		results.setId("Browse-and-Load");
-		results.setPrefWidth(70);
+		results.setPrefWidth(100);
 		results.setOnAction(e->browseHandler.run());
 		return results;
 	}
@@ -85,7 +85,7 @@ public class BankStatementViewBuilder implements Builder<Region>{
 	private Node nextButton() {
 		Button results = new Button("Next");
 		results.setId("View-Transaction-List");
-		results.setPrefWidth(70);
+		results.setPrefWidth(100);
 		results.setOnAction(e->nextPageHandler.run());
 		//if file has not been selected, display error, add later
 		return results;

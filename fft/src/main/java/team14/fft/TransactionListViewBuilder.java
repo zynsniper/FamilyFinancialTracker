@@ -20,7 +20,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	public Region build() {
 		BorderPane results = new BorderPane();
 		results.setTop(formatTitle(title(), instructions()));
-		results.setBottom(formatAssignButton(assignButton()));
+		results.setBottom(formatButtons(assignButton(), addBuyerButton()));
 		results.setCenter(formatCenter(buyerMenu(), listOfTransactions()));
 		results.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
 		return results;
@@ -51,16 +51,24 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	//Contributing Authors: O Darrah
 	private Node assignButton() {
 		Button results = new Button("Assign");
-		results.setPrefWidth(70);
+		results.setPrefWidth(100);
+		//results.setOnAction();
+		return results;
+	}
+	
+	private Node addBuyerButton() {
+		Button results = new Button("Add Buyer");
+		results.setPrefWidth(100);
 		//results.setOnAction();
 		return results;
 	}
 	
 	//Contributing Authors: O Darrah
-	private Node formatAssignButton(Node assignButton) {
+	private Node formatButtons(Node assignButton, Node addBuyerButton) {
 		HBox results = new HBox();
 		results.setPadding(new Insets(10,10,10,10));
-		results.getChildren().add(assignButton);
+		results.setSpacing(10);
+		results.getChildren().addAll(assignButton, addBuyerButton);
 		return results;
 	}
 	
