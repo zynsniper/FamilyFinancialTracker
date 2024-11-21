@@ -4,10 +4,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 //Contributing Authors: O Darrah, W Elliott, D MacIssac
-public class TransactionsModel {
+public class BankStatementModel {
 	private final StringProperty bankStatementProperty;
 	
-	public TransactionsModel() {
+	public BankStatementModel() {
 		bankStatementProperty = new SimpleStringProperty();
 	}
 	

@@ -9,10 +9,10 @@ import javafx.util.Builder;
 //Contributing Authors: W Elliott, D MacIssac
 public class BankStatementController {
 	private Builder<Region> builder;
-	private TransactionsModel model;
+	private BankStatementModel model;
 	
 	//Contributing Authors: O Darrah, W Elliott, D MacIssac
-	public BankStatementController(TransactionsModel model) {
+	public BankStatementController(BankStatementModel model) {
 		this.model = model;
 		this.builder = new BankStatementViewBuilder(model.bankStatementProperty(), this::browseFileExplorer, this::nextPage);
 	}

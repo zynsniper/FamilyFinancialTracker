@@ -24,7 +24,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		
-		TransactionsModel model = new TransactionsModel();
+		BankStatementModel model = new BankStatementModel();
 		
 		mainLayout = new BorderPane();
 		mainLayout.setPadding(new Insets(10,10,10,10));
