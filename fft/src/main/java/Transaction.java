@@ -1,5 +1,3 @@
-package fft.src.main.java;
-
 public class Transaction {
     private Category category;
     private Vendor vendor;
@@ -11,6 +9,10 @@ public class Transaction {
         category = catIn;
         total = totalIn;
         if(total > 0){debit = true;}else{debit = false;}
+    }
+
+    public double getTotal(){
+        return total;
     }
 
     public Transaction(Vendor venIn, double totalIn){
