@@ -11,7 +11,7 @@ public class Transaction {
         total = totalIn;
         if(total < 0){debit = true;}else{debit = false;}
     }
-
+    //Contributing authors: CS Cheang
     public double getTotal(){
         return total;
     }
