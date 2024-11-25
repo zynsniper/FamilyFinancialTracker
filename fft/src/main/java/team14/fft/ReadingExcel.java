@@ -11,7 +11,7 @@ import org.apache.poi.ss.usermodel.CellType;
 public class ReadingExcel{
     public static void main(String[] args) throws FileNotFoundException, IOException{
         String excelFilePath = "G:\\UNB\\Fall2024\\CS2043\\2023-11.xlsx";
-        
+        //Contributing authors: CS Cheang
         try(FileInputStream inputStream = new FileInputStream(excelFilePath);
             XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
             
@@ -19,7 +19,7 @@ public class ReadingExcel{
 
             int rows = sheet.getLastRowNum();
             int cols = sheet.getRow(1).getLastCellNum();
-
+        
             for(int r = 0; r <= rows ; r++){
                 XSSFRow row = sheet.getRow(r);
 
