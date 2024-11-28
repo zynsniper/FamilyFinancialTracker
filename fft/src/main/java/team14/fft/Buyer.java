@@ -6,20 +6,21 @@ public class Buyer {
     private int numTransactions;
     private ArrayList<Buyer> buyers;
 
+    //Contributing authors: R Legere
     public Buyer(String nameIn){
         buyerName = nameIn;
         numTransactions = 0;
         buyers.add(this);
     }
-
+    //Contributing authors: R Legere
     public String getName(){
         return buyerName;
     }
-
+    //Contributing authors: R Legere
     public void incrementTransaction(){
         numTransactions++;
     }
-
+    //Contributing authors: R Legere
     public int getNumTransactions(){
         return numTransactions;
     }
