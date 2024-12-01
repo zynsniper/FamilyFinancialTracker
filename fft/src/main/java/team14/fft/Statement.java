@@ -8,6 +8,7 @@ public class Statement {
     private ArrayList<Transaction> transactions;
     private double totalSpent;
     private int totalRewardPoints;
+    
     //Contributing authors: CS Cheang
     public Statement(int statementID, String buyerName, String statementDate) {
         this.statementID = statementID;
@@ -15,14 +16,17 @@ public class Statement {
         this.statementDate = statementDate;
         this.transactions = new ArrayList<>();
     }
+    
     //Contributing authors: CS Cheang
     public int getStatementID() {
     	return statementID;
     }
+    
     //Contributing authors: CS Cheang
     public String getStatementDate() {
     	return statementDate;
     }
+    
     //Contributing authors: CS Cheang
     public void calculateTotalSpent() {
         totalSpent = 0;
@@ -30,6 +34,7 @@ public class Statement {
             totalSpent += a.isDebit() ? a.getTotal() : 0; 
         }
     }
+    
     //Contributing authors: CS Cheang
     public void calculateTotalRewardPoints() {
         totalRewardPoints = 0;
@@ -37,14 +42,17 @@ public class Statement {
             totalRewardPoints += a.calcRewardPt();
         }
     }
+    
     //Contributing authors: CS Cheang
     public void addTransactions(Transaction toBeAdded) {
     	transactions.add(toBeAdded);
     }
+    
     //Contributing authors: CS Cheang
     public void removeTransaction(Transaction transaction) {
         transactions.remove(transaction);
     }
+    
     //Contributing authors: CS Cheang
     public String generateSummary() {
         return "Statement ID: " + statementID + "\n" +
