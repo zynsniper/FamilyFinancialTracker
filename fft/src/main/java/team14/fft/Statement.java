@@ -22,6 +22,11 @@ public class Statement {
     	return statementID;
     }
     
+    //Contributing authors: R Legere
+    public ArrayList<Transaction> getTransactions(){
+    	return transactions;
+    }
+
     //Contributing authors: CS Cheang
     public String getStatementDate() {
     	return statementDate;
