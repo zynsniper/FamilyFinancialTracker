@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Buyer {
     private String buyerName;
     private int numTransactions;
-    private ArrayList<Buyer> buyers;
+    private static ArrayList<Buyer> buyers = new ArrayList<>();
 
     //Contributing authors: R Legere
     public Buyer(String nameIn){
@@ -24,6 +24,9 @@ public class Buyer {
     public int getNumTransactions(){
         return numTransactions;
     }
-
-
+    //Contributing authors: CS Cheang
+    public static ArrayList<Buyer> getAllBuyers() {
+        return buyers;
+    }
+    
 }
