@@ -1,7 +1,9 @@
 package team14.fft;
+
 public class Transaction {
     private Category category;
     private Vendor vendor;
+    private Buyer buyer;
     private double total;
     private boolean debit;
 
@@ -37,5 +39,11 @@ public class Transaction {
     //Contributing authors: R Legere
     public boolean isDebit(){
         return debit;
+    }
+    
+    //Contributing authors: R Legere
+    public void setBuyer(Buyer buyer) {
+    	this.buyer = buyer;
+    	buyer.incrementTransaction();
     }
 }

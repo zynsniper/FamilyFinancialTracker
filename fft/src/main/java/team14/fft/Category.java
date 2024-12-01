@@ -18,7 +18,7 @@ public class Category {
         PT_MULTIPLIER = ptIn;
     }
     //Contributing authors: R Legere
-    public String getCat(){
+    public String toString(){
         return CAT_NAME;
     }
     //Contributing authors: R Legere

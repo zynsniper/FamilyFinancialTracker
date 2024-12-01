@@ -23,4 +23,3 @@ public class BankStatementModel {
 		return bankStatementProperty.get();
 	}
 }
-
