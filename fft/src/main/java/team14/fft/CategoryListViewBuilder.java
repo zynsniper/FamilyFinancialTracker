@@ -1,6 +1,5 @@
 package team14.fft;
 
-import java.util.ArrayList;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -52,14 +51,9 @@ public class CategoryListViewBuilder implements Builder<Region>{
 	//Contributing authors: R Legere
 	private Node noCatList() {
 		VBox toReturn = new VBox();
-		/*for(int i=0; i<transactions.size(); i++) {
-			if(transactions.get(i).getCat() == null) {
-				String transaction = transactions.get(i).toString();*/
 				CheckBox box = new CheckBox("Example transaction");
 				//box.setOnAction()
 				toReturn.getChildren().add(box);
-			//}
-		//}
 		return toReturn;
 	}
 	

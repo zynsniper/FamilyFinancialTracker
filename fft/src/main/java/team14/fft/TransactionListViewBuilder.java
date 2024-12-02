@@ -98,8 +98,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	
 	//Contributing Authors: O Darrah
 	private Node buyerMenu() {
-		ChoiceBox<String> results = new ChoiceBox<>();
-		results.getItems().addAll("This is a test", "Hello World");
+		ChoiceBox<Buyer> results = new ChoiceBox<Buyer>();
 		return results;
 	}
 	
