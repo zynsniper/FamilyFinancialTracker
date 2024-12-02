@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Vendor {
     private final String VENDOR_NAME;
     private final Category CATEGORY;
-    private ArrayList<Vendor> vendors;
+    private static ArrayList<Vendor> vendors;
 
     //Contributing authors: R Legere
     public Vendor(String nameIn, Category catIn){
