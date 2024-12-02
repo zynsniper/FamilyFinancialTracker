@@ -6,16 +6,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Builder;
 
 public class CategoryListViewBuilder implements Builder<Region>{
+	private CategoryListModel model;
 	
+	public CategoryListViewBuilder() {
+		model = new CategoryListModel();
+	}
 	//Contributing authors: R Legere
 	public Region build() {
-		VBox build = new VBox(labs(), catBox(), noCatList(), buttons());
+		VBox build = new VBox(labs(), catFormat(), noCatList(), buttons());
 		build.setPrefHeight(300);
 		build.setPrefWidth(200);
 		return build;
@@ -44,8 +49,23 @@ public class CategoryListViewBuilder implements Builder<Region>{
 	private Node catBox() {
 		ChoiceBox<Category> cats = new ChoiceBox<>();
 		Category test = new Category("Test category");
-		cats.getItems().add(test);
+		cats.setItems(model.getList());
 		return cats;
+	}
+	
+	//Contributing authors: R Legere
+	private Node catText() {
+		TextField addCat = new TextField();
+		addCat.setPrefWidth(100);
+		addCat.textProperty().bindBidirectional(model.catStr());
+		return addCat;
+	}
+	
+	//Contributing authors: R Legere
+	private Node catButton() {
+		Button addCat = new Button("Add");
+		addCat.setOnAction(e -> model.addCat());
+		return addCat;
 	}
 	
 	//Contributing authors: R Legere
@@ -77,6 +97,12 @@ public class CategoryListViewBuilder implements Builder<Region>{
 	private Node buttons() {
 		HBox buttons = new HBox(nextButton(), assignButton());
 		return buttons;
+	}
+	
+	//Contributing authors: R Legere
+	private Node catFormat() {
+		HBox catFormat = new HBox(catBox(), catText(), catButton());
+		return catFormat;
 	}
 	
 	
