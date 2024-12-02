@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -15,17 +16,20 @@ import javafx.util.Builder;
 //Contributing Authors: O Darrah, W Elliott, R Legere
 public class TransactionListViewBuilder implements Builder<Region> {
 	private Runnable nextHandler;
+	String buyer;
+	TransactionListModel model;
 	
 	//Contributing authors: R Legere
 	public TransactionListViewBuilder(Runnable next) {
 		this.nextHandler = next;
+		model = new TransactionListModel();
 	}
 	//Contributing Authors: O Darrah, W Elliott
 	@Override
 	public Region build() {
 		BorderPane results = new BorderPane();
 		results.setTop(formatTitle(title(), instructions()));
-		results.setBottom(formatButtons(assignButton(), addBuyerButton(), nextButton()));
+		results.setBottom(formatButtons(assignButton(), addBuyerField(), addBuyerButton(), nextButton()));
 		results.setCenter(formatCenter(buyerMenu(), listOfTransactions()));
 		results.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
 		return results;
@@ -60,11 +64,18 @@ public class TransactionListViewBuilder implements Builder<Region> {
 		//results.setOnAction();
 		return results;
 	}
+	private Node addBuyerField() {
+		TextField newBuyer = new TextField();
+		//newBuyer.setPromptText("Enter buyer name");
+		newBuyer.setPrefWidth(200);
+		newBuyer.textProperty().bindBidirectional(model.buyerStr());
+		return newBuyer;
+	}
 	
 	private Node addBuyerButton() {
 		Button results = new Button("Add Buyer");
 		results.setPrefWidth(100);
-		//results.setOnAction();
+		results.setOnAction(e -> model.addBuyer());
 		return results;
 	}
 	
@@ -77,11 +88,11 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	}
 	
 	//Contributing Authors: O Darrah
-	private Node formatButtons(Node assignButton, Node addBuyerButton, Node nextButton) {
+	private Node formatButtons(Node assignButton, Node newBuyer, Node addBuyerButton, Node nextButton) {
 		HBox results = new HBox();
 		results.setPadding(new Insets(10,10,10,10));
 		results.setSpacing(10);
-		results.getChildren().addAll(assignButton, addBuyerButton, nextButton);
+		results.getChildren().addAll(assignButton, newBuyer, addBuyerButton, nextButton);
 		return results;
 	}
 	

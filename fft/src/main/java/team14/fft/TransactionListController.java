@@ -7,6 +7,7 @@ import javafx.util.Builder;
 public class TransactionListController {
 	private Builder<Region> builder;
 	
+	
 	//Contributing Authors: O Darrah
 	public TransactionListController() {
 		this.builder = new TransactionListViewBuilder(this::nextPage);
@@ -21,6 +22,9 @@ public class TransactionListController {
 	public void nextPage() {
 		Main.getMainLayout().setCenter(new CategoryListController().getView());
 	}
+	
+	
+
 }
 
 
