@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.util.Builder;
 
 public class CategoryListViewBuilder implements Builder<Region>{
+	
+	//Contributing authors: R Legere
 	public Region build() {
 		VBox build = new VBox(labs(), catBox(), noCatList(), buttons());
 		build.setPrefHeight(300);
@@ -25,17 +27,21 @@ public class CategoryListViewBuilder implements Builder<Region>{
 		Label lab = new Label("Unassigned categories\n");
 		return lab;
 	}
+	
+	//Contributing authors: R Legere
 	private Node instructions() {
 		Label lab = new Label("Select a category from the drop-down menu, and check all transactions");
 		return lab;
 	}
 	
+	//Contributing authors: R Legere
 	private Node labs() {
 		VBox labs = new VBox(title(), instructions());
 		labs.setSpacing(10);
 		return labs;
 	}
 	
+	//Contributing authors: R Legere
 	private Node catBox() {
 		ChoiceBox<Category> cats = new ChoiceBox<>();
 		Category test = new Category("Test category");
@@ -43,6 +49,7 @@ public class CategoryListViewBuilder implements Builder<Region>{
 		return cats;
 	}
 	
+	//Contributing authors: R Legere
 	private Node noCatList() {
 		VBox toReturn = new VBox();
 		/*for(int i=0; i<transactions.size(); i++) {
@@ -56,6 +63,7 @@ public class CategoryListViewBuilder implements Builder<Region>{
 		return toReturn;
 	}
 	
+	//Contributing authors: R Legere
 	private Node nextButton() {
 		Button next = new Button("Continue");
 		next.setPrefWidth(100);
@@ -63,6 +71,7 @@ public class CategoryListViewBuilder implements Builder<Region>{
 		return next;
 	}
 	
+	//Contributing authors: R Legere
 	private Node assignButton() {
 		Button assign = new Button("Assign");
 		assign.setPrefWidth(100);
@@ -70,6 +79,7 @@ public class CategoryListViewBuilder implements Builder<Region>{
 		return assign;
 	}
 	
+	//Contributing authors: R Legere
 	private Node buttons() {
 		HBox buttons = new HBox(nextButton(), assignButton());
 		return buttons;

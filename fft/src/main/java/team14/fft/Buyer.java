@@ -8,6 +8,7 @@ public class Buyer {
 
     //Contributing authors: R Legere
     public Buyer(String nameIn){
+    	if(buyers == null) {buyers = new ArrayList<Buyer>();}
         buyerName = nameIn;
         numTransactions = 0;
         buyers.add(this);
