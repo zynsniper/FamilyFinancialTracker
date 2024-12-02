@@ -16,10 +16,6 @@ public class Transaction {
         total = totalIn;
         if(total < 0){debit = true;}else{debit = false;}
     }
-    //Contributing authors: CS Cheang
-    public double getTotal(){
-        return total;
-    }
 
     //Contributing authors: R Legere
     public Transaction(Vendor venIn, double totalIn){
@@ -27,6 +23,11 @@ public class Transaction {
         category = vendor.getCat();
         total = totalIn;
         if(total > 0){debit = true;}else{debit = false;}
+    }
+    
+    //Contributing authors: CS Cheang
+    public double getTotal(){
+        return total;
     }
 
     //Contributing authors: R Legere
@@ -38,6 +39,7 @@ public class Transaction {
     public Category getCat() {
     	return category;
     }
+    
     //Contributing authors: R Legere
     public int calcRewardPt(){
         return (int)(total*category.getX());
