@@ -12,15 +12,20 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Builder;
 
-//Contributing Authors: O Darrah, W Elliott
+//Contributing Authors: O Darrah, W Elliott, R Legere
 public class TransactionListViewBuilder implements Builder<Region> {
-
+	private Runnable nextHandler;
+	
+	//Contributing authors: R Legere
+	public TransactionListViewBuilder(Runnable next) {
+		this.nextHandler = next;
+	}
 	//Contributing Authors: O Darrah, W Elliott
 	@Override
 	public Region build() {
 		BorderPane results = new BorderPane();
 		results.setTop(formatTitle(title(), instructions()));
-		results.setBottom(formatButtons(assignButton(), addBuyerButton()));
+		results.setBottom(formatButtons(assignButton(), addBuyerButton(), nextButton()));
 		results.setCenter(formatCenter(buyerMenu(), listOfTransactions()));
 		results.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
 		return results;
@@ -63,12 +68,20 @@ public class TransactionListViewBuilder implements Builder<Region> {
 		return results;
 	}
 	
+	//Contributing authors: R Legere
+	private Node nextButton() {
+		Button next = new Button("Next");
+		next.setPrefWidth(100);
+		next.setOnAction(e -> nextHandler.run());
+		return next;
+	}
+	
 	//Contributing Authors: O Darrah
-	private Node formatButtons(Node assignButton, Node addBuyerButton) {
+	private Node formatButtons(Node assignButton, Node addBuyerButton, Node nextButton) {
 		HBox results = new HBox();
 		results.setPadding(new Insets(10,10,10,10));
 		results.setSpacing(10);
-		results.getChildren().addAll(assignButton, addBuyerButton);
+		results.getChildren().addAll(assignButton, addBuyerButton, nextButton);
 		return results;
 	}
 	

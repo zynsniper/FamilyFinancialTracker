@@ -13,7 +13,7 @@ public class Buyer {
         buyers.add(this);
     }
     //Contributing authors: R Legere
-    public String getName(){
+    public String toString(){
         return buyerName;
     }
     //Contributing authors: R Legere
@@ -24,6 +24,7 @@ public class Buyer {
     public int getNumTransactions(){
         return numTransactions;
     }
+
     //Contributing authors: CS Cheang
     public static ArrayList<Buyer> getAllBuyers() {
         return buyers;
