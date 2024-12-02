@@ -1,6 +1,7 @@
 package team14.fft;
 
 public class InputProcessor {
+	//Contributing authors: CS Cheang
     public void processData(String[][] data) {
         for (String[] row : data) {
             if (row == null) continue;
