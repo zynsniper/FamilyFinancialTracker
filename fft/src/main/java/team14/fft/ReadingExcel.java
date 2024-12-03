@@ -1,57 +1,75 @@
 package team14.fft;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.ss.usermodel.CellType;
 
 public class ReadingExcel{
-    public static void main(String[] args) throws FileNotFoundException, IOException{
-        String excelFilePath = "G:\\UNB\\Fall2024\\CS2043\\2023-11.xlsx";
-        //Contributing authors: CS Cheang
-        try(FileInputStream inputStream = new FileInputStream(excelFilePath);
-            XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
-            
-            XSSFSheet sheet = workBook.getSheetAt(0);
+	//Contributing authors: CS Cheang
+	public ReadingExcel() {}
 
-            int rows = sheet.getLastRowNum();
-            int cols = sheet.getRow(1).getLastCellNum();
-        
-            for(int r = 0; r <= rows ; r++){
-                XSSFRow row = sheet.getRow(r);
-
-
-                XSSFCell cell = row.getCell(0);
-                
-                String date = row.getCell(0).getDateCellValue().toString();
-                String vendor = row.getCell(1).getStringCellValue();
-
-                double debit = 0.0;
-                XSSFCell debitCell = row.getCell(2);
-                if (debitCell != null && debitCell.getCellType() == org.apache.poi.ss.usermodel.CellType.NUMERIC) {
-                    debit = debitCell.getNumericCellValue();
-                }
-
-                double credit = 0.0;
-                XSSFCell creditCell = row.getCell(3);
-                if (creditCell != null && creditCell.getCellType() == org.apache.poi.ss.usermodel.CellType.NUMERIC) {
-                    credit = creditCell.getNumericCellValue();
-                }
-
-                double balance = row.getCell(4).getNumericCellValue();
-
-                System.out.println(String.format("Date: %s, Vendor: %s, Debit: %.2f, Credit: %.2f, Balance: %.2f%n", date, vendor, debit, credit, balance));
-                
-            }
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("File not found: " + e.getMessage());
-        } 
-        catch (IOException e) {
-            System.out.println("IOException occurred: " + e.getMessage());
-        }
+    public String[][] ReadingInput(String yourFilePath) throws IOException{
+    	
+	    try(FileInputStream inputStream = new FileInputStream(yourFilePath);
+	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
+	        
+	        XSSFSheet sheet = workBook.getSheetAt(0);
+	
+	        int rows = sheet.getPhysicalNumberOfRows();
+	        String[][] arr = new String[rows][5];
+	    
+	        for(int r = 0; r <= rows ; r++){
+	            XSSFRow row = sheet.getRow(r);
+	            if (row == null) continue;
+	
+	            arr[r][0] = row.getCell(0).getDateCellValue().toString();
+	            arr[r][1] = row.getCell(1).getStringCellValue();
+	
+	            XSSFCell debitCell = row.getCell(2);
+	            if (debitCell != null) {
+	                arr[r][2] = String.valueOf(debitCell.getNumericCellValue());
+	            }
+	
+	            XSSFCell creditCell = row.getCell(3);
+	            if (creditCell != null) {
+	                arr[r][3] = String.valueOf(creditCell.getNumericCellValue());
+	            }
+	
+	            arr[r][4] = String.valueOf(row.getCell(4).getNumericCellValue());
+	            
+	        }
+	        
+	        return arr;
+	    }
     }
+    
+    
+    
+    /*
+    public ArrayList<Transaction> TransactionReader(String yourFilePath) throws IOException {
+    	
+    	ArrayList<Transaction> output = null;
+
+	    try(FileInputStream inputStream = new FileInputStream(null);
+	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
+	        	        
+	        
+	        XSSFSheet sheet = workBook.getSheetAt(0);
+	
+	        for(Row row: sheet) {
+	        	output.add(new Transaction(new Category(row.getCell(0).getStringCellValue()),
+	        							   new Vendor(row.getCell(1).getStringCellValue(), new Category(row.getCell(0).getStringCellValue())),
+	        							   new Buyer(row.getCell(2).getStringCellValue()),
+	        							   row.getCell(3).getNumericCellValue()));
+	        }
+	    }
+		return output;
+    }
+	*/
 }

@@ -13,7 +13,8 @@ public class Vendor {
         vendors.add(this);
     }
 
-    //Contributing authors: R Legere
+
+	//Contributing authors: R Legere
     public String getVendor(){
         return VENDOR_NAME;
     }

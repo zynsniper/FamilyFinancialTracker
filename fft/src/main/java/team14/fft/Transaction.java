@@ -2,13 +2,15 @@ package team14.fft;
 public class Transaction {
     private Category category;
     private Vendor vendor;
+    private Buyer buyer;
     private double total;
     private boolean debit;
 
     //Contributing authors: R Legere
-    public Transaction(Category catIn, Vendor venIn, double totalIn){
+    public Transaction(Category catIn, Vendor venIn, Buyer buyerIn, double totalIn){
         vendor = venIn;
         category = catIn;
+        buyer = buyerIn;
         total = totalIn;
         if(total < 0){debit = true;}else{debit = false;}
     }
