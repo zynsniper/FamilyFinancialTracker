@@ -8,6 +8,7 @@ public class Statement {
     private ArrayList<Transaction> transactions;
     private double totalSpent;
     private int totalRewardPoints;
+    private ArrayList<Statement> monthlyStatements;
     
     //Contributing authors: CS Cheang
     public Statement(int statementID, String buyerName, String statementDate) {
@@ -20,6 +21,15 @@ public class Statement {
     //Contributing authors: CS Cheang
     public int getStatementID() {
     	return statementID;
+    }
+    
+    public String getBuyerName() {
+    	return buyerName;
+    }
+    
+    //Contributing authors: CS Cheang
+    public void addMonthlyStatement(Statement monthlyStatement) {
+        monthlyStatements.add(monthlyStatement);
     }
     
     //Contributing authors: R Legere
