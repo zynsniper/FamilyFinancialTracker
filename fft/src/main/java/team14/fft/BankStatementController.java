@@ -35,6 +35,7 @@ public class BankStatementController {
 	
 	//Contributing Authors: O Darrah
 	private void nextPage() {
+		
 		Main.getMainLayout().setCenter(new TransactionListController().getView());
 	}
 }
