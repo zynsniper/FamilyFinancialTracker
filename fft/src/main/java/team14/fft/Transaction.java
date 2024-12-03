@@ -9,12 +9,7 @@ public class Transaction {
     private boolean debit;
 
     //Contributing authors: R Legere
-<<<<<<< HEAD
     public Transaction(Category catIn, Vendor venIn, Buyer buyerIn, double totalIn){
-=======
-    public Transaction(String dateIn, Category catIn, Vendor venIn, double totalIn){
-    	date = dateIn;
->>>>>>> 333ab8b6ecbdeb1ebd58eed03f6af1f073b9f13c
         vendor = venIn;
         category = catIn;
         buyer = buyerIn;
