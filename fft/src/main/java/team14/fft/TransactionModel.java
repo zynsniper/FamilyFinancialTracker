@@ -1,46 +1,58 @@
 package team14.fft;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.control.CheckBox;
 
 public class TransactionModel {
-	private SimpleStringProperty date;
-    private SimpleStringProperty category;
-    private SimpleStringProperty vendor;
-    private SimpleStringProperty buyer;
-    private SimpleDoubleProperty total;
-    // decide if this is needed later private boolean debit;
+	private StringProperty date;
+    private StringProperty category;
+    private StringProperty vendor;
+    private StringProperty buyer;
+    private DoubleProperty total;
+    private CheckBox select;
 
     //Contributing authors: O Darrah
     public TransactionModel(Transaction transaction){
+    	date = new SimpleStringProperty(transaction.getDate());
         vendor = new SimpleStringProperty(transaction.getVen().getVendor());
         category = new SimpleStringProperty(transaction.getCat().toString());
         buyer = new SimpleStringProperty(transaction.getBuyer().getBuyerName());
         total = new SimpleDoubleProperty(transaction.getTotal());
+        select = new CheckBox();
+    }
+    
+    
+    //Contributing authors: O Darrah
+    public double getTotal(){
+        return total.get();
     }
     
     //Contributing authors: O Darrah
-    public SimpleDoubleProperty getTotalProperty(){
-        return total;
+    public String getDate(){
+        return date.get();
     }
     
     //Contributing authors: O Darrah
-    public SimpleStringProperty getDateProperty(){
-        return date;
+    public String getBuyer(){
+        return buyer.get();
     }
     
     //Contributing authors: O Darrah
-    public SimpleStringProperty getBuyerNameProperty(){
-        return buyer;
-    }
-    
-    //Contributing authors: O Darrah
-    public SimpleStringProperty getVendorNameProperty(){
-        return vendor;
+    public String getVendor(){
+        return vendor.get();
     }
 
     //Contributing authors: O Darrah
-    public SimpleStringProperty getCategoryProperty(){
-        return category;
+    public String getCategoryy(){
+        return category.get();
     }
+    
+    //Contributing authors: O Darrah
+    public CheckBox getSelect(){
+        return select;
+    }
+    
 }
