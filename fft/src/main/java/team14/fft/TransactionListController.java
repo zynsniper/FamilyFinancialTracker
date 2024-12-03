@@ -9,7 +9,7 @@ public class TransactionListController {
 	
 	//REMOVE TEST STATEMENTS LATER!!
 	//Contributing Authors: O Darrah
-	public TransactionListController(Statement statement) {
+	public TransactionListController(/*Statement statement*/) {
 		Statement sTest = new Statement(01, "Olivia", "20241024");
 		
 		Category cTest1 = new Category("Groceries");
