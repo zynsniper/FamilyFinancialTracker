@@ -8,8 +8,9 @@ public class Transaction {
     private double total;
     private boolean debit;
 
-    //Contributing authors: R Legere
-    public Transaction(Category catIn, Vendor venIn, Buyer buyerIn, double totalIn){
+    //Contributing authors: R Legere, O Darrah
+    public Transaction(String dateIn, Category catIn, Vendor venIn, Buyer buyerIn, double totalIn){
+    	date = dateIn;
         vendor = venIn;
         category = catIn;
         buyer = buyerIn;
@@ -69,4 +70,9 @@ public class Transaction {
     public String toString() {
     	return date + ": " + vendor + "_- $" + total;
     }
+    
+    //Contributing authors: O Darrah
+	public String getDate() {
+		return date;
+	}
 }
