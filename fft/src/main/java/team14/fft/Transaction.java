@@ -29,7 +29,17 @@ public class Transaction {
     public double getTotal(){
         return total;
     }
-
+    
+    //Contributing authors: O Darrah
+    public Vendor getVen() {
+    	return vendor;
+    }
+    
+    //Contributing authors: O Darrah
+    public Buyer getBuyer() {
+    	return buyer;
+    }
+    
     //Contributing authors: R Legere
     public void changeCategory(Category newCat){
         category = newCat;

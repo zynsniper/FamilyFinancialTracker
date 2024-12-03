@@ -24,7 +24,7 @@ public class BuyerList {
 	
 	public void setCurBuyer(String name) {
 		for(Buyer buyer: buyerList) {
-			if(buyer.getName().equals(name)) {
+			if(buyer.getBuyerName().equals(name)) {
 				currentBuyer = buyer;
 				break;
 			}
