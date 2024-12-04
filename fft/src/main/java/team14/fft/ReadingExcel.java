@@ -12,7 +12,7 @@ public class ReadingExcel{
 	//Contributing authors: CS Cheang
 	public ReadingExcel() {}
 
-    public String[][] ReadingInput(String yourFilePath) throws IOException{
+    public static String[][] ReadingInput(String yourFilePath) throws IOException{
     	
 	    try(FileInputStream inputStream = new FileInputStream(yourFilePath);
 	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;

@@ -1,10 +1,12 @@
 package team14.fft;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class InputProcessor {
 	//Contributing authors: CS Cheang
-	public String date;
-    public void processData(String[][] data) {
-    	date = data[0][0];
+	private static ArrayList<Transaction> transactions;
+    public static void processData(String[][] data) throws IOException {
         for (String[] row : data) {
             if (row == null) continue;
 
@@ -28,8 +30,14 @@ public class InputProcessor {
             System.out.printf("%-30s %-28s %-8s %-8s %-10s %n", date, vendor, debit, credit, balance);
             if(row[2] == null) {
             	Transaction transaction = new Transaction(row[0], ven, total);
+            	transactions.add(transaction);
             }
         }
+    }
+    
+    public static ArrayList<Transaction> getTransactions(String fileName) throws IOException{
+    	processData(ReadingExcel.ReadingInput(fileName));
+    	return transactions;
     }
     
 }
