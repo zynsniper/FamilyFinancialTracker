@@ -18,12 +18,6 @@ public class TransactionListController {
 		Vendor vTest2  = new Vendor("ALCOOL NB LIQUOR", cTest2);
 		Buyer bTest1 = new Buyer ("Olivia");
 		
-		Transaction tTest1 = new Transaction("20241115", cTest1, vTest1, bTest1, 43.98);
-		Transaction tTest2 = new Transaction("20241128", cTest2, vTest2, bTest1, 28.99);
-		
-		sTest.addTransactions(tTest1);
-		sTest.addTransactions(tTest2);
-		
 		//change sTest to statement when removing tests
 		this.builder = new TransactionListViewBuilder(this::nextPage, sTest);
 	}

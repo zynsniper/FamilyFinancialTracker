@@ -47,6 +47,24 @@ public class ReadingExcel{
 	    }
     }
     
+    //Contributing authors: R Legere
+    public static String[][] readCategories(String filePath) throws IOException {
+    	String[][] arr;
+    	FileInputStream stream = new FileInputStream(filePath);
+    	XSSFWorkbook book = new XSSFWorkbook(stream);
+    	XSSFSheet sheet = book.getSheetAt(0);
+    	int rows = sheet.getLastRowNum();
+    	arr = new String[rows][2];
+    	for(int i=0; i<rows; i++) {
+    		XSSFRow row = sheet.getRow(i);
+    		for(int j=0; j<row.getLastCellNum(); j++) {
+    			arr[i][j] = row.getCell(j).getStringCellValue();
+    		}
+    	}
+    	return arr;
+    	
+    }
+    
     
     
     /*

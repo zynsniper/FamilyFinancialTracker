@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Builder;
 
 public class CategoryListViewBuilder implements Builder<Region>{
-	private CategoryListModel model;
+	CategoryListModel model;
 	
 	public CategoryListViewBuilder() {
 		model = new CategoryListModel();

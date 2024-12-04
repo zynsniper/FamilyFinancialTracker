@@ -31,4 +31,6 @@ public class CategoryListModel {
 	public ObservableList<Category> getList(){
 		return cats;
 	}
+	
+	public void assignCategories(String category, )
 }

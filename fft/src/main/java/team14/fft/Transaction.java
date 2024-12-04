@@ -44,6 +44,14 @@ public class Transaction {
     	return buyer;
     }
     
+    public Vendor getVendor() {
+    	return vendor;
+    }
+    
+    public String getDate() {
+    	return date;
+    }
+    
     //Contributing authors: R Legere
     public int calcRewardPt(){
         return (int)(total*category.getX());

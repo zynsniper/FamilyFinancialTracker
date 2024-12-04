@@ -2,6 +2,7 @@ package team14.fft;
 import java.util.ArrayList;
 
 public class Statement {
+	private static int nextID = 1000;
     private int statementID;
     private String buyerName;
     private String statementDate;
@@ -12,10 +13,16 @@ public class Statement {
     
     //Contributing authors: CS Cheang
     public Statement(int statementID, String buyerName, String statementDate) {
-        this.statementID = statementID;
+    	this.statementID = statementID;
         this.buyerName = buyerName;
         this.statementDate = statementDate;
         this.transactions = new ArrayList<>();
+    }
+    
+    public Statement(String statementDate) {
+        this.statementID = nextID++;
+    	this.statementDate = statementDate;
+    	this.transactions = new ArrayList<>();
     }
     
     //Contributing authors: CS Cheang

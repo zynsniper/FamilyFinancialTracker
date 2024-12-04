@@ -27,7 +27,7 @@ public class FileStatement extends Statement{
 			String categoryNameFromUI = catModel.catStr().getValue();
 			Category category = new Category(categoryNameFromUI);
 			
-			for(String[] row: data) {
+			for(String[] row: data)s {
 				String date = row[0];
                 String vendorName = row[1];
                 double debit = Double.parseDouble(row[2]);

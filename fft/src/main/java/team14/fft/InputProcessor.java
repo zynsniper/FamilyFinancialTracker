@@ -3,10 +3,12 @@ package team14.fft;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 public class InputProcessor {
-	//Contributing authors: CS Cheang
+	//Contributing authors: CS Cheang, R Legere
 	private static ArrayList<Transaction> transactions;
     public static void processData(String[][] data) throws IOException {
+    	transactions = new ArrayList<Transaction>();
         for (String[] row : data) {
             if (row == null) continue;
 
@@ -17,27 +19,36 @@ public class InputProcessor {
             String balance = row[4];
             double total;
             if(credit != null) {
-            	total = Integer.parseInt(credit);
+            	total = Double.parseDouble(credit);
             }
             else {
-            	total = Integer.parseInt(debit);
+            	total = Double.parseDouble(debit);
             	total *= -1;
             }
-            double bal = Integer.parseInt(balance);
+            double bal = Double.parseDouble(balance);
             Vendor ven = Vendor.addVendor(vendor);
             
             
-            System.out.printf("%-30s %-28s %-8s %-8s %-10s %n", date, vendor, debit, credit, balance);
-            if(row[2] == null) {
-            	Transaction transaction = new Transaction(row[0], ven, total);
-            	transactions.add(transaction);
+            Transaction transaction = new Transaction(row[0], ven, total);
+            transactions.add(transaction);
             }
         }
-    }
     
+    //Contributing authors: R Legere
     public static ArrayList<Transaction> getTransactions(String fileName) throws IOException{
     	processData(ReadingExcel.ReadingInput(fileName));
     	return transactions;
+    }
+    
+    public static void loadCategories(String[][] arr) {
+    	for(int i=0; i<arr.length; i++) {
+    		if(arr[i][1] != null) {
+    			Category cat = new Category(arr[i][0], Integer.parseInt(arr[i][1]));
+    		}
+    		else {
+    			Category cat = new Category(arr[i][0]);
+    		}
+    	}
     }
     
 }

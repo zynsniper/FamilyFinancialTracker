@@ -24,12 +24,22 @@ public class Vendor {
     public String getVendor(){
         return name;
     }
+    
+    //Contributing authors: R Legere
+    public void addCategory(Category cat) {
+    	this.cat = cat;
+    }
 
     //Contributing authors: R Legere
     public Category getCat(){
     	return cat;
     }
     
+    public String toString() {
+    	return name;
+    }
+    
+    //Contributing authors: R Legere
     public static Vendor addVendor(String vendorIn) {
     	if(vendors == null) {
     		vendors = new ArrayList<Vendor>();
@@ -44,6 +54,11 @@ public class Vendor {
     		return vendor;
     	}
     }
+    
+    public static ArrayList<Vendor> getVendors(){
+    	return vendors;
+    }
+
     
     
 }
