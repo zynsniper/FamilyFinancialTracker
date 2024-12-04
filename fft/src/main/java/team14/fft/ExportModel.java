@@ -28,6 +28,7 @@ public class ExportModel {
             Transaction t = new Transaction(nextTransaction.getDate(), 
                                              Vendor.addVendor(nextTransaction.getVendor()), 
                                              Buyer.addBuyer(nextTransaction.getBuyer()), 
+                                             Category.findCategory(nextTransaction.getCategory()),
                                              nextTransaction.getTotal());
             
             transactions.add(t);

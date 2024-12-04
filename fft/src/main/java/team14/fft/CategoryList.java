@@ -8,7 +8,7 @@ public class CategoryList {
 	//Contributing Authors: W Elliott
 
 	private String filepath = "target/categories.xlsx";
-	private ArrayList<Category> categoryList;
+	private static ArrayList<Category> categoryList;
 	private ReadingExcel reader = new ReadingExcel();
 	
 	/*public CategoryList() throws IOException {
@@ -36,9 +36,10 @@ public class CategoryList {
 		excel.WriteCategory(categoryList);
 	}
 	
-	public void add(String nameIn) {
+	public static void add(String nameIn) {
 		categoryList.add(new Category(nameIn));
 	}
+	
 	
 	public void add(Category catIn) {
 		categoryList.add(catIn);

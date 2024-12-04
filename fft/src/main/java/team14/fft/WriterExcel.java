@@ -99,10 +99,4 @@ public class WriterExcel {
 		workbook.write(fos);
 	}
 
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

@@ -99,7 +99,7 @@ public class ReadingExcel{
 
                 String formattedDate = dateFormat.format(dateCell.getDateCellValue());
                 String vendorName = row.getCell(1) != null ? row.getCell(1).getStringCellValue() : "Unknown Vendor";
-                String buyerName = " ";
+                String buyerName = "Unassigned Buyer";
                 if (debitCell != null) {
                     amount = debitCell.getNumericCellValue();
                 } else {
