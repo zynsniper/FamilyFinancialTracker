@@ -14,7 +14,7 @@ public class Buyer {
         buyers.add(this);
     }
     //Contributing authors: R Legere
-    public String getBuyerName(){
+    public String toString(){
         return buyerName;
     }
     //Contributing authors: R Legere
