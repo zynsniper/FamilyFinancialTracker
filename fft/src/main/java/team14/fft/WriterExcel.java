@@ -18,7 +18,7 @@ public class WriterExcel {
 		sheet = workbook.createSheet();
 	}
 	
-	public void WriteTranactions(ArrayList<Transaction> transactionList) throws Exception {
+	public void WriteTransactions(ArrayList<Transaction> transactions)  throws Exception {
 		Row header = sheet.createRow(0);
 		Cell cell1 = header.createCell(0); cell1.setCellValue("Date");
 		Cell cell2 = header.createCell(1); cell2.setCellValue("Category");
@@ -27,7 +27,7 @@ public class WriterExcel {
 		Cell cell5 = header.createCell(4); cell5.setCellValue("Total");
 		Cell cell6 = header.createCell(5); cell6.setCellValue("DR/CR");
 		int rowNum = 1;
-		for(Transaction transaction : transactionList) {
+		for(Transaction transaction : transactions) {
 			Row row = sheet.createRow(rowNum++);
 			
 			int cellNum = 0;
@@ -97,6 +97,11 @@ public class WriterExcel {
 		Cell cell2 = row.createCell(1); cell2.setCellValue(total);
 		FileOutputStream fos = new FileOutputStream(filePath.toString());
 		workbook.write(fos);
+	}
+
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 
