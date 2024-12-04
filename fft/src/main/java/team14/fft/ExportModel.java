@@ -29,6 +29,7 @@ public class ExportModel {
                                              Vendor.addVendor(nextTransaction.getVendor()), 
                                              Buyer.addBuyer(nextTransaction.getBuyer()), 
                                              nextTransaction.getTotal());
+            
             transactions.add(t);
         }
     }
