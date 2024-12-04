@@ -1,6 +1,7 @@
 package team14.fft;
 
 
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -21,14 +22,17 @@ public class CategoryListViewBuilder implements Builder<Region>{
 	//Contributing authors: R Legere
 	public Region build() {
 		VBox build = new VBox(labs(), catFormat(), noCatList(), buttons());
+		build.setSpacing(10);
 		build.setPrefHeight(300);
 		build.setPrefWidth(200);
+		build.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
 		return build;
 	}
 	
 	//Contributing authors: R Legere
 	private Node title() {
 		Label lab = new Label("Unassigned categories\n");
+		lab.getStyleClass().add("pane-label");
 		return lab;
 	}
 	
@@ -96,6 +100,7 @@ public class CategoryListViewBuilder implements Builder<Region>{
 	//Contributing authors: R Legere
 	private Node buttons() {
 		HBox buttons = new HBox(nextButton(), assignButton());
+		buttons.setSpacing(10);
 		return buttons;
 	}
 	

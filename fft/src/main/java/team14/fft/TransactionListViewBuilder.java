@@ -5,8 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -20,10 +22,11 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	TransactionListModel model;
 	
 	//Contributing authors: R Legere
-	public TransactionListViewBuilder(Runnable next) {
+	public TransactionListViewBuilder(Runnable next, Statement statement) {
 		this.nextHandler = next;
-		model = new TransactionListModel();
+		model = new TransactionListModel(statement);
 	}
+	
 	//Contributing Authors: O Darrah, W Elliott
 	@Override
 	public Region build() {
@@ -105,7 +108,33 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	
 	//Contributing Authors: O Darrah
 	private Node listOfTransactions(){
-		TableView<Transaction> results = new TableView<>();
+		TableView<TransactionModel> results = new TableView<>(model.getObservableTransactionModels());
+		
+		TableColumn<TransactionModel, String> dateColumn = new TableColumn<>("Date");
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        dateColumn.setSortable(true);
+
+        TableColumn<TransactionModel, ?> buyerColumn = new TableColumn<>("Buyer");
+        buyerColumn.setCellValueFactory(new PropertyValueFactory<>("buyer"));
+        buyerColumn.setSortable(true);
+
+        TableColumn<TransactionModel, ?> vendorColumn = new TableColumn<>("Vendor");
+        vendorColumn.setCellValueFactory(new PropertyValueFactory<>("vendor"));
+        vendorColumn.setSortable(true);
+        
+        TableColumn<TransactionModel, ?> totalColumn = new TableColumn<>("Total");
+        totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
+        totalColumn.setSortable(true);
+        
+        TableColumn<TransactionModel, ?> selectColumn = new TableColumn<>("Select");
+        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+        
+        results.getColumns().add(selectColumn);
+        results.getColumns().add(dateColumn);
+        results.getColumns().add(buyerColumn);
+        results.getColumns().add(vendorColumn);
+        results.getColumns().add(totalColumn);
+        
 		return results;
 	}
 	

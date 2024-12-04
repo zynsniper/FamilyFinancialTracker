@@ -6,13 +6,13 @@ public class Vendor {
     private final Category CATEGORY;
     private static ArrayList<Vendor> vendors;
 
-    //Contributing authors: R Legere
+    //Contributing authors: R Legere, O Darrah
     public Vendor(String nameIn, Category catIn){
+    	if(vendors == null) {vendors = new ArrayList<Vendor>();}
         VENDOR_NAME = nameIn;
         CATEGORY = catIn;
         vendors.add(this);
     }
-
 
 	//Contributing authors: R Legere
     public String getVendor(){
