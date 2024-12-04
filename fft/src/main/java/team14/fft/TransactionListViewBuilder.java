@@ -126,7 +126,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
         vendorColumn.setCellValueFactory(new PropertyValueFactory<>("vendor"));
         vendorColumn.setSortable(true);
         
-        TableColumn<TransactionModel, ?> totalColumn = new TableColumn<>("Total");
+        TableColumn<TransactionModel, ?> totalColumn = new TableColumn<>("Cost");
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
         totalColumn.setSortable(true);
         

@@ -33,7 +33,6 @@ public class TransactionListModel {
 	public void addBuyer() {
 		Buyer buyer = new Buyer(buyerStr.getValue());
 		buyers.add(buyer);
-		
 	}
 	
 	//Contributing authors: R Legere

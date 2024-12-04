@@ -8,6 +8,7 @@ import java.nio.file.*;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -71,7 +72,7 @@ public class ReadingExcel{
     }
     
     
-  //Contributing authors: W Elliott, O Darrah
+  //Contributing authors: W Elliott, O Darrah, CS Cheang
 
     public ArrayList<Transaction> TransactionReader(String filePath) throws IOException {
     	
@@ -81,13 +82,20 @@ public class ReadingExcel{
 
 	    try(FileInputStream inputStream = new FileInputStream(filePath.toString());
 	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
-	        	        
-	        
 	        XSSFSheet sheet = workBook.getSheetAt(0);
+	        
 	
 	        for(Row row: sheet) {
-	        	output.add(new Transaction(new Vendor(row.getCell(1).getStringCellValue()),
-	        							   row.getCell(4).getNumericCellValue()));
+	        	Cell debitCell = row.getCell(2);
+	        	Cell creditCell = row.getCell(3);
+	        	if (debitCell != null) {
+	        		output.add(new Transaction(row.getCell(0).getDateCellValue().toString(),new Vendor(row.getCell(1).getStringCellValue()), 
+	        				row.getCell(2).getNumericCellValue()));
+	            }
+	        	else {
+	        	output.add(new Transaction(row.getCell(0).getDateCellValue().toString(),new Vendor(row.getCell(1).getStringCellValue()), 
+	        							   row.getCell(3).getNumericCellValue()*-1));
+	        	}
 	        }
 	    }
 		return output;
