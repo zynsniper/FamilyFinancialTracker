@@ -15,7 +15,7 @@ public class WriterExcel {
 	public WriterExcel(String fileName) {
 		this.fileName = fileName;
 		filePath = Paths.get(fileName);
-		sheet = workbook.createSheet(fileName);
+		sheet = workbook.createSheet();
 	}
 	
 	public void WriteTranactions(ArrayList<Transaction> transactionList) throws Exception {
@@ -40,7 +40,9 @@ public class WriterExcel {
 		for (Category category : categoryList) {
 			Row row = sheet.createRow(rowNum++);
 			Cell cell = row.createCell(0);
+			Cell catCell = row.createCell(1);
 			cell.setCellValue(category.toString());
+			catCell.setCellValue(category.getX());
 		}
 		FileOutputStream fos = new FileOutputStream(filePath.toString());
 		workbook.write(fos);

@@ -14,7 +14,7 @@ public class BankStatementModel {
 	public void setBankStatement(String filename) {
 		bankStatementProperty.set(filename);
 	}
-	
+
 	public StringProperty bankStatementProperty() {
 		return bankStatementProperty;
 	}

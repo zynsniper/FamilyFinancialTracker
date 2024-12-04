@@ -63,13 +63,16 @@ public class ReadingExcel{
     	arr = new String[rows][2];
     	for(int i=0; i<rows; i++) {
     		XSSFRow row = sheet.getRow(i);
-    		for(int j=0; j<row.getLastCellNum(); j++) {
-    			arr[i][j] = row.getCell(j).getStringCellValue();
-    		}
+    			arr[i][0] = row.getCell(0).getStringCellValue();
+    			int multiplier = (int)row.getCell(1).getNumericCellValue();
+    			String s = "" + multiplier;
+    			arr[i][1] = s;
     	}
     	return arr;
-    	
     }
+    
+
+    	
     
     
   //Contributing authors: W Elliott, O Darrah, CS Cheang
