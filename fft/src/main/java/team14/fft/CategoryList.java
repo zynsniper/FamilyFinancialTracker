@@ -18,8 +18,9 @@ public class CategoryList {
 		}
 	}
 	
-	public void store() {
-		//stores CategoryList into an EXCEL file to be opened later 
+	public void store() throws IOException {
+		WriterExcel excel = new WriterExcel("target/Category.xlsx");
+		excel.WriteCategory(categoryList);
 	}
 	
 	public void add(String nameIn) {

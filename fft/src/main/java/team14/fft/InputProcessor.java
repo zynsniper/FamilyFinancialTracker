@@ -40,15 +40,19 @@ public class InputProcessor {
     	return transactions;
     }
     
-    public static void loadCategories(String[][] arr) {
+    public static CategoryList loadCategories(String[][] arr) throws IOException {
+    	CategoryList catList = new CategoryList();
     	for(int i=0; i<arr.length; i++) {
     		if(arr[i][1] != null) {
     			Category cat = new Category(arr[i][0], Integer.parseInt(arr[i][1]));
+    			catList.add(cat);
     		}
     		else {
     			Category cat = new Category(arr[i][0]);
+    			catList.add(cat);
     		}
     	}
+    	return catList;
     }
     
 }
