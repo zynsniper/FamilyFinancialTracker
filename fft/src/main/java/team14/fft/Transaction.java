@@ -80,11 +80,14 @@ public class Transaction {
     public ArrayList<String> toList() {
     	ArrayList<String> output = new ArrayList<String>();
     	output.add(date);
-    	output.add(category.toString());
+    	try{output.add(category.toString());
+    	}catch(NullPointerException e) {output.add("Undefined category");}
     	output.add(vendor.toString());
-    	output.add(buyer.toString());
+    	try{output.add(buyer.toString());
+		}catch(NullPointerException e) {output.add("Undefined buyer");}
     	output.add(String.valueOf(total));
-    	output.add(String.valueOf(debit));
+    	if(debit) {output.add("Debit");}
+    	else {output.add("Credit");}
     	
     	return output;
     }

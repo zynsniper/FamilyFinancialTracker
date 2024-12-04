@@ -19,8 +19,14 @@ public class WriterExcel {
 	}
 	
 	public void WriteTranactions(ArrayList<Transaction> transactionList) throws Exception {
-		
-		int rowNum = 0;
+		Row header = sheet.createRow(0);
+		Cell cell1 = header.createCell(0); cell1.setCellValue("Date");
+		Cell cell2 = header.createCell(1); cell2.setCellValue("Category");
+		Cell cell3 = header.createCell(2); cell3.setCellValue("Vendor");
+		Cell cell4 = header.createCell(3); cell4.setCellValue("Buyer");
+		Cell cell5 = header.createCell(4); cell5.setCellValue("Total");
+		Cell cell6 = header.createCell(5); cell6.setCellValue("DR/CR");
+		int rowNum = 1;
 		for(Transaction transaction : transactionList) {
 			Row row = sheet.createRow(rowNum++);
 			
@@ -28,9 +34,9 @@ public class WriterExcel {
 			for (String value : transaction.toList()) {
 				Cell cell = row.createCell(cellNum++);
 				cell.setCellValue(value);
+				sheet.autoSizeColumn(cellNum);
 			}
 		}
-		
 		FileOutputStream fos = new FileOutputStream(filePath.toString());
 		workbook.write(fos);
 	}
@@ -63,6 +69,9 @@ public class WriterExcel {
 	
 	//Contributing authors: R Legere
 	public void WriteCatTotals(ArrayList<Transaction> transactions, ArrayList<Category> list) throws IOException {
+		Row header = sheet.createRow(sheet.getLastRowNum());
+		Cell hCell1 = header.createCell(0); hCell1.setCellValue("Category");
+		Cell hCell2 = header.createCell(1); hCell2.setCellValue("Total");
 		for(int i=0; i<list.size(); i++) {
 			double total = 0;
 			for(int j=0; j<transactions.size(); j++) {
