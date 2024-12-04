@@ -75,11 +75,8 @@ public class ReadingExcel{
     
     
   //Contributing authors: W Elliott, O Darrah
-
     public ArrayList<Transaction> TransactionReader(String filePath) throws IOException {
 
-        String fileName = "target/transactionList.XLSX";
-        //Path filePath = Paths.get(fileName);
         ArrayList<Transaction> output = new ArrayList<Transaction>();
 
         try(FileInputStream inputStream = new FileInputStream(filePath.toString());
@@ -110,5 +107,4 @@ public class ReadingExcel{
         }
         return output;
     }
-	
 }

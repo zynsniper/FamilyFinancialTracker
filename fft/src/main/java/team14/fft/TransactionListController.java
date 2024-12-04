@@ -2,17 +2,26 @@ package team14.fft;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javafx.scene.layout.Region;
+import javafx.util.Builder;
 
 //Contributing Authors: O Darrah, CS Cheang
 public class TransactionListController {
 	private TransactionListViewBuilder builder;
 	
-	//Contributing Authors: O Darrah, CS Cheang
+	//REMOVE TEST STATEMENTS LATER!!
+	//Contributing Authors: O Darrah
 	public TransactionListController(String filePath) {
+		/*Statement sTest = new Statement(01, "Olivia", "20241024");
 		
+		Category cTest1 = new Category("Groceries");
+		Category cTest2 = new Category("Alcohol");
+		Vendor vTest1  = new Vendor("WALMART SOUTH", cTest1);
+		Vendor vTest2  = new Vendor("ALCOOL NB LIQUOR", cTest2);
+		Buyer bTest1 = new Buyer ("Olivia");*/
 		String excelFilePath = filePath;
-		Statement statement = new Statement(1000, "Statement1", "20241024");
+		Statement statement = new Statement(1, "Olivia", "20241024");
 		try {
             ReadingExcel excelReader = new ReadingExcel();
             ArrayList<Transaction> transactions = excelReader.TransactionReader(excelFilePath);
@@ -25,7 +34,7 @@ public class TransactionListController {
         } catch (IOException e) {
             System.out.println("Error reading Excel file: " + excelFilePath);
         }
-
+		//change sTest to statement when removing tests
 		this.builder = new TransactionListViewBuilder(this::nextPage, statement);
 	}
 	
