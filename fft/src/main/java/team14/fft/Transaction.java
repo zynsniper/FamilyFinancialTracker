@@ -1,4 +1,5 @@
 package team14.fft;
+import java.util.ArrayList;
 
 public class Transaction {
 	private String date;
@@ -8,11 +9,10 @@ public class Transaction {
     private double total;
     private boolean debit;
 
-    //Contributing authors: R Legere
-    public Transaction(Category catIn, Vendor venIn, Buyer buyerIn, double totalIn){
+    //Contributing authors: R Legere, W Elliott
+    public Transaction(String date, Vendor venIn, double totalIn){
+    	this.date = date;
         vendor = venIn;
-        category = catIn;
-        buyer = buyerIn;
         total = totalIn;
         if(total < 0){debit = true;}else{debit = false;}
     }
@@ -40,6 +40,10 @@ public class Transaction {
     	return category;
     }
     
+    public Buyer getBuyer() {
+    	return buyer;
+    }
+    
     //Contributing authors: R Legere
     public int calcRewardPt(){
         return (int)(total*category.getX());
@@ -55,8 +59,24 @@ public class Transaction {
     	this.buyer = buyer;
     	buyer.incrementTransaction();
     }
+	//Contributing authors: W Elliott
+    public void setCategory(Category category) {
+    	this.category = category;
+    }
     
     public String toString() {
     	return date + ": " + vendor + "_- $" + total;
+    }
+    
+    public ArrayList<String> toList() {
+    	ArrayList<String> output = new ArrayList<String>();
+    	output.add(date);
+    	output.add(category.toString());
+    	output.add(vendor.toString());
+    	output.add(buyer.toString());
+    	output.add(String.valueOf(total));
+    	output.add(String.valueOf(debit));
+    	
+    	return output;
     }
 }
