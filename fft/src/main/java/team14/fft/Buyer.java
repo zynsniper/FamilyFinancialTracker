@@ -31,4 +31,19 @@ public class Buyer {
         return buyers;
     }
     
+    public static Buyer addBuyer(String buyerIn) {
+    	if(buyers == null) {
+    		buyers = new ArrayList<Buyer>();
+    		Buyer buyer = new Buyer(buyerIn);
+    		return buyer;
+    	}
+    	else {
+    		for(int i=0; i<buyers.size(); i++) {
+    			if(buyers.get(i).toString() == buyerIn) {return buyers.get(i);}
+    		}
+    		Buyer buyer = new Buyer(buyerIn);
+    		return buyer;
+    	}
+    }
+    
 }

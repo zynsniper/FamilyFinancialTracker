@@ -60,6 +60,35 @@ public class WriterExcel {
 		workbook.write(fos);
 		
 	}
+	
+	//Contributing authors: R Legere
+	public void WriteCatTotals(ArrayList<Transaction> transactions, ArrayList<Category> list) throws IOException {
+		for(int i=0; i<list.size(); i++) {
+			double total = 0;
+			for(int j=0; j<transactions.size(); j++) {
+				if(transactions.get(j).getCat() == list.get(i)) {
+					total+= transactions.get(j).getTotal();
+				}
+			}
+			Row row = sheet.createRow(sheet.getLastRowNum());
+			Cell cell1 = row.createCell(0);
+			cell1.setCellValue(list.get(i).toString());
+			Cell cell2 = row.createCell(1);
+			cell2.setCellValue(total);
+		}
+		FileOutputStream fos = new FileOutputStream(filePath.toString());
+		workbook.write(fos);
+	}
+	
+	//Contributing authors: R Legere
+	public void writeTotal(ArrayList<Transaction> transactions) throws IOException {
+		double total = Calculator.calcBalChange(transactions);
+		Row row = sheet.createRow(sheet.getLastRowNum());
+		Cell cell1 = row.createCell(0); cell1.setCellValue("Total:");
+		Cell cell2 = row.createCell(1); cell2.setCellValue(total);
+		FileOutputStream fos = new FileOutputStream(filePath.toString());
+		workbook.write(fos);
+	}
 
 
 }

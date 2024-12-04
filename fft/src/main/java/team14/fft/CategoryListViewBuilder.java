@@ -100,9 +100,16 @@ public class CategoryListViewBuilder implements Builder<Region>{
 	
 	//Contributing authors: R Legere
 	private Node nextButton() {
-		Button next = new Button("Continue");
+		Button next = new Button("Export");
 		next.setPrefWidth(100);
-		//next.setOnAction();
+		next.setOnAction(e_->{
+			try {
+				ExportModel eModel = new ExportModel(model.getTransactions(), model.getList());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.exit(0);
+		});
 		return next;
 	}
 	

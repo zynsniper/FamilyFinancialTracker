@@ -10,10 +10,10 @@ public class Transaction {
     private boolean debit;
 
     //Contributing authors: R Legere, W Elliott, CS Cheang
-    public Transaction(String date, Vendor venIn, Buyer buyerIn, double totalIn){
+    public Transaction(String date, Vendor vendor, Buyer buyer, double totalIn){
     	this.date = date;
-        vendor = venIn;
-        buyer = buyerIn;
+        this.vendor = vendor;
+        this.buyer = buyer;
         total = totalIn;
         if(total < 0){debit = true;}else{debit = false;}
     }
