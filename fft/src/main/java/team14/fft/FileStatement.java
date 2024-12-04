@@ -23,8 +23,8 @@ public class FileStatement extends Statement{
 	public void loadExcelFile() {
 		try{ReadingExcel reader = new ReadingExcel();
 			String[][] data = reader.ReadingInput(filePath);
-			String buyerNameFromUI = transcModel.buyerStr().getValue();
-			String categoryNameFromUI = catModel.catStr().getValue();
+			String buyerNameFromUI = transcModel.buyerStr().toString();
+			String categoryNameFromUI = catModel.catStr().toString();
 			Category category = new Category(categoryNameFromUI);
 			
 			for(String[] row: data) {

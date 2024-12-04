@@ -73,10 +73,10 @@ public class ReadingExcel{
     
   //Contributing authors: W Elliott, O Darrah
 
-    public ArrayList<Transaction> TransactionReader() throws IOException {
+    public ArrayList<Transaction> TransactionReader(String filePath) throws IOException {
     	
     	String fileName = "target/transactionList.XLSX";
-    	Path filePath = Paths.get(fileName);
+    	//Path filePath = Paths.get(fileName);
     	ArrayList<Transaction> output = new ArrayList<Transaction>();
 
 	    try(FileInputStream inputStream = new FileInputStream(filePath.toString());
@@ -86,10 +86,7 @@ public class ReadingExcel{
 	        XSSFSheet sheet = workBook.getSheetAt(0);
 	
 	        for(Row row: sheet) {
-	        	output.add(new Transaction(row.getCell(0).getStringCellValue(),
-	        							   new Category(row.getCell(1).getStringCellValue()),
-	        							   new Vendor(row.getCell(2).getStringCellValue(), new Category(row.getCell(1).getStringCellValue())),
-	        							   new Buyer(row.getCell(3).getStringCellValue()),
+	        	output.add(new Transaction(new Vendor(row.getCell(1).getStringCellValue()),
 	        							   row.getCell(4).getNumericCellValue()));
 	        }
 	    }
