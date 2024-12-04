@@ -10,18 +10,13 @@ import javafx.util.Builder;
 public class TransactionListController {
 	private TransactionListViewBuilder builder;
 	
-	//REMOVE TEST STATEMENTS LATER!!
-	//Contributing Authors: O Darrah
+
+	//Contributing Authors: O Darrah, CS Cheang
 	public TransactionListController(String filePath) {
-		/*Statement sTest = new Statement(01, "Olivia", "20241024");
-		
-		Category cTest1 = new Category("Groceries");
-		Category cTest2 = new Category("Alcohol");
-		Vendor vTest1  = new Vendor("WALMART SOUTH", cTest1);
-		Vendor vTest2  = new Vendor("ALCOOL NB LIQUOR", cTest2);
-		Buyer bTest1 = new Buyer ("Olivia");*/
+
 		String excelFilePath = filePath;
 		Statement statement = new Statement(1, "Olivia", "20241024");
+		
 		try {
             ReadingExcel excelReader = new ReadingExcel();
             ArrayList<Transaction> transactions = excelReader.TransactionReader(excelFilePath);
