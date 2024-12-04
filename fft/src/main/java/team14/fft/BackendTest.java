@@ -20,7 +20,7 @@ public class BackendTest {
 		list.add(new Category("Recurring bills", 2));
 		list.add(new Category("Other"));
 		list.store();
-		list = InputProcessor.loadCategories(null);
+		list = InputProcessor.loadCategories(ReadingExcel.readCategories("target/Category.xlsx"));
 		for(int i=0; i<list.getList().size(); i++) {
 			System.out.println(list.getList().get(i).toString());
 		}

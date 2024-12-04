@@ -1,5 +1,6 @@
 package team14.fft;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -11,11 +12,13 @@ public class CategoryList {
 	private ReadingExcel reader = new ReadingExcel();
 	
 	public CategoryList() throws IOException {
-		String []storedCategories = reader.ReadingInput(filepath)[0]; 
-		
+		categoryList = new ArrayList<Category>();
+		try {
+			String []storedCategories = reader.ReadingInput(filepath)[0]; 
 		for (String nameIn : storedCategories) {
 			categoryList.add(new Category(nameIn));
 		}
+		}catch(FileNotFoundException e) {}
 	}
 	
 	public void store() throws IOException {
