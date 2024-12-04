@@ -1,57 +1,115 @@
 package team14.fft;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.io.*;
+import java.nio.file.*;
+import java.text.SimpleDateFormat;
+
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.ss.usermodel.CellType;
 
 public class ReadingExcel{
-    public static void main(String[] args) throws FileNotFoundException, IOException{
-        String excelFilePath = "G:\\UNB\\Fall2024\\CS2043\\2023-11.xlsx";
-        //Contributing authors: CS Cheang
-        try(FileInputStream inputStream = new FileInputStream(excelFilePath);
+	//Contributing authors: CS Cheang
+	public ReadingExcel() {}
+
+    public String[][] ReadingInput(String yourFilePath) throws IOException{
+    	
+	    try(FileInputStream inputStream = new FileInputStream(yourFilePath);
+	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
+	        
+	        XSSFSheet sheet = workBook.getSheetAt(0);
+	
+	        int rows = sheet.getPhysicalNumberOfRows();
+	        String[][] arr = new String[rows][5];
+	    
+	        for(int r = 0; r <= rows ; r++){
+	            XSSFRow row = sheet.getRow(r);
+	            if (row == null) continue;
+	
+	            arr[r][0] = row.getCell(0).getDateCellValue().toString();
+	            arr[r][1] = row.getCell(1).getStringCellValue();
+	
+	            XSSFCell debitCell = row.getCell(2);
+	            if (debitCell != null) {
+	                arr[r][2] = String.valueOf(debitCell.getNumericCellValue());
+	            }
+	
+	            XSSFCell creditCell = row.getCell(3);
+	            if (creditCell != null) {
+	                arr[r][3] = String.valueOf(creditCell.getNumericCellValue());
+	            }
+	
+	            arr[r][4] = String.valueOf(row.getCell(4).getNumericCellValue());
+	            
+	        }
+	        
+	        return arr;
+	    }
+    }
+    
+    
+  //Contributing authors: R Legere
+    public static String[][] readCategories(String filePath) throws IOException {
+    	String[][] arr;
+    	FileInputStream stream = new FileInputStream(filePath);
+    	XSSFWorkbook book = new XSSFWorkbook(stream);
+    	XSSFSheet sheet = book.getSheetAt(0);
+    	int rows = sheet.getLastRowNum();
+    	arr = new String[rows][2];
+    	for(int i=0; i<rows; i++) {
+    		XSSFRow row = sheet.getRow(i);
+    			arr[i][0] = row.getCell(0).getStringCellValue();
+    			int multiplier = (int)row.getCell(1).getNumericCellValue();
+    			String s = "" + multiplier;
+    			arr[i][1] = s;
+    	}
+    	return arr;
+    }
+    
+
+    	
+    
+    
+  //Contributing authors: W Elliott, O Darrah, CS Cheang
+
+    public ArrayList<Transaction> TransactionReader(String filePath) throws IOException {
+
+        String fileName = "target/transactionList.XLSX";
+        //Path filePath = Paths.get(fileName);
+        ArrayList<Transaction> output = new ArrayList<Transaction>();
+
+        try(FileInputStream inputStream = new FileInputStream(filePath.toString());
             XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
-            
             XSSFSheet sheet = workBook.getSheetAt(0);
 
-            int rows = sheet.getLastRowNum();
-            int cols = sheet.getRow(1).getLastCellNum();
-        
-            for(int r = 0; r <= rows ; r++){
-                XSSFRow row = sheet.getRow(r);
 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-                XSSFCell cell = row.getCell(0);
-                
-                String date = row.getCell(0).getDateCellValue().toString();
-                String vendor = row.getCell(1).getStringCellValue();
+            for(Row row: sheet) {
+                Cell dateCell = row.getCell(0);
+                Cell debitCell = row.getCell(2);
+                Cell creditCell = row.getCell(3);
+                double amount = 0.0;
 
-                double debit = 0.0;
-                XSSFCell debitCell = row.getCell(2);
-                if (debitCell != null && debitCell.getCellType() == org.apache.poi.ss.usermodel.CellType.NUMERIC) {
-                    debit = debitCell.getNumericCellValue();
+                String formattedDate = dateFormat.format(dateCell.getDateCellValue());
+                String vendorName = row.getCell(1) != null ? row.getCell(1).getStringCellValue() : "Unknown Vendor";
+                String buyerName = "Unassigned Buyer";
+                if (debitCell != null) {
+                    amount = debitCell.getNumericCellValue();
+                } else {
+                    amount = creditCell.getNumericCellValue() * -1;
                 }
 
-                double credit = 0.0;
-                XSSFCell creditCell = row.getCell(3);
-                if (creditCell != null && creditCell.getCellType() == org.apache.poi.ss.usermodel.CellType.NUMERIC) {
-                    credit = creditCell.getNumericCellValue();
-                }
-
-                double balance = row.getCell(4).getNumericCellValue();
-
-                System.out.println(String.format("Date: %s, Vendor: %s, Debit: %.2f, Credit: %.2f, Balance: %.2f%n", date, vendor, debit, credit, balance));
-                
+                output.add(new Transaction(formattedDate, new Vendor(vendorName), new Buyer(buyerName), amount));
             }
         }
-        catch (FileNotFoundException e) {
-            System.out.println("File not found: " + e.getMessage());
-        } 
-        catch (IOException e) {
-            System.out.println("IOException occurred: " + e.getMessage());
-        }
+        return output;
     }
+	
 }

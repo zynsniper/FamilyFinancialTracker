@@ -29,12 +29,13 @@ public class BankStatementController {
 		
 		File file = fileChooser.showOpenDialog(null);
 		if(file != null) {
-			model.setBankStatement(file.getName());
+			model.setBankStatement(file.getAbsolutePath());
 		}
 	}
 	
 	//Contributing Authors: O Darrah
 	private void nextPage() {
-		Main.getMainLayout().setCenter(new TransactionListController().getView());
+		
+		Main.getMainLayout().setCenter(new TransactionListController(model.getBankStatement()).getView());
 	}
 }
