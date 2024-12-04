@@ -12,7 +12,7 @@ public class TransactionListController {
 	
 	//REMOVE TEST STATEMENTS LATER!!
 	//Contributing Authors: O Darrah
-	public TransactionListController(/*Statement statement*/) {
+	public TransactionListController(String filePath) {
 		/*Statement sTest = new Statement(01, "Olivia", "20241024");
 		
 		Category cTest1 = new Category("Groceries");
@@ -20,7 +20,7 @@ public class TransactionListController {
 		Vendor vTest1  = new Vendor("WALMART SOUTH", cTest1);
 		Vendor vTest2  = new Vendor("ALCOOL NB LIQUOR", cTest2);
 		Buyer bTest1 = new Buyer ("Olivia");*/
-		String excelFilePath = "G:\\UNB\\Fall2024\\CS2043\\2023-11.xlsx";
+		String excelFilePath = filePath;
 		Statement statement = new Statement(1, "Olivia", "20241024");
 		try {
             ReadingExcel excelReader = new ReadingExcel();

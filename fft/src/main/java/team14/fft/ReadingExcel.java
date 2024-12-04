@@ -72,14 +72,9 @@ public class ReadingExcel{
     
 
     	
-    }
-<<<<<<< HEAD
     
     
   //Contributing authors: W Elliott, O Darrah
-=======
-   
->>>>>>> 4268628 (update category list)
 
     public ArrayList<Transaction> TransactionReader(String filePath) throws IOException {
     	
