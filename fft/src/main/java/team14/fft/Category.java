@@ -26,5 +26,9 @@ public class Category {
     public int getX(){
         return PT_MULTIPLIER;
     }
+    
+    public static ArrayList<Category> getCats(){
+    	return categories;
+    }
 
 }

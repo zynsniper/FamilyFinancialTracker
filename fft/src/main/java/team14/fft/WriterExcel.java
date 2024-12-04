@@ -58,6 +58,22 @@ public class WriterExcel {
 		workbook.write(fos);
 		
 	}
+	
+	public static void writeCategoryStandalone(String fileName) throws IOException{
+		FileOutputStream stream = new FileOutputStream(fileName);
+		Workbook book = new XSSFWorkbook();
+		Sheet sheet = book.createSheet();
+		
+		
+		
+		ArrayList<Category> cats = Category.getCats();
+		for(int i=0; i<cats.size(); i++) {
+			Row row = sheet.createRow(i);
+			row.createCell(0); row.createCell(1);
+			row.getCell(0).setCellValue(cats.get(i).toString());
+			row.getCell(0).setCellValue(cats.get(i).getX());
+		}
+	}
 
 
 }
