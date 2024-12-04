@@ -16,8 +16,4 @@ public class CategoryListController {
 	public Region getView() {
 		return build.build();
 	}
-
-	public void assignCategories() {
-		
-	}
 }

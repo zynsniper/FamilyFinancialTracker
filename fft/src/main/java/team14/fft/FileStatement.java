@@ -7,12 +7,14 @@ public class FileStatement extends Statement{
 	private TransactionListModel transcModel;
 	private CategoryListModel catModel;
 	
+	//Contributing authors: CS Cheang
 	public FileStatement(int statementID, String buyerName, String statementDate, String filePath) {
 		super(statementID, buyerName, statementDate);
 		this.filePath = filePath;
 		loadExcelFile();
 	}
 	
+	//Contributing authors: CS Cheang
 	public FileStatement(int statementID, String buyerName, String statementDate, String filePath, TransactionListModel model) {
         super(statementID, buyerName, statementDate);
         this.filePath = filePath;
@@ -20,6 +22,11 @@ public class FileStatement extends Statement{
         loadExcelFile();
     }
 	
+	//Contributing authors: CS Cheang
+	/*
+	 * Spike for loadingExcelFile (NOT FINAL) transaction constructor can be modified
+	 * 'Include main class to  test'
+	 */
 	public void loadExcelFile() {
 		try{ReadingExcel reader = new ReadingExcel();
 			String[][] data = reader.ReadingInput(filePath);
@@ -37,8 +44,8 @@ public class FileStatement extends Statement{
                 Vendor vendor = new Vendor(vendorName, category); 
                 Buyer buyer = new Buyer(buyerNameFromUI); 
                 
-                Transaction transaction = new Transaction(category, vendor, buyer, total);
-                addTransactions(transaction);
+                //Transaction transaction = new Transaction(category, vendor, buyer, total);
+                //addTransactions(transaction);
 			}
 			
 		} catch (IOException e) {

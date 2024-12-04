@@ -19,6 +19,7 @@ public class Statement {
         this.transactions = new ArrayList<>();
     }
     
+    //Contributing authors: CS Cheang
     public Statement(String statementDate) {
         this.statementID = nextID++;
     	this.statementDate = statementDate;

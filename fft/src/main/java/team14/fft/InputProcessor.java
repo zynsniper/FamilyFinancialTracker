@@ -3,7 +3,6 @@ package team14.fft;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class InputProcessor {
 	//Contributing authors: CS Cheang, R Legere
 	private static ArrayList<Transaction> transactions;
@@ -29,8 +28,8 @@ public class InputProcessor {
             Vendor ven = Vendor.addVendor(vendor);
             
             
-            Transaction transaction = new Transaction(row[0], ven, total);
-            transactions.add(transaction);
+            //Transaction transaction = new Transaction(row[0], ven, total);
+            //transactions.add(transaction);
             }
         }
     
@@ -40,6 +39,7 @@ public class InputProcessor {
     	return transactions;
     }
     
+  //Contributing authors: R Legere
     public static CategoryList loadCategories(String[][] arr) throws IOException {
     	CategoryList catList = new CategoryList();
     	for(int i=0; i<arr.length; i++) {
@@ -54,5 +54,4 @@ public class InputProcessor {
     	}
     	return catList;
     }
-    
 }

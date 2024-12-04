@@ -1,6 +1,7 @@
 package team14.fft;
 
 import java.util.ArrayList;
+
 public class Buyer {
     private String buyerName;
     private int numTransactions;
@@ -31,6 +32,7 @@ public class Buyer {
         return buyers;
     }
     
+    //Contributing authors: R Legere
     public static Buyer addBuyer(String buyerIn) {
     	if(buyers == null) {
     		buyers = new ArrayList<Buyer>();
@@ -45,5 +47,4 @@ public class Buyer {
     		return buyer;
     	}
     }
-    
 }

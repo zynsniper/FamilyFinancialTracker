@@ -10,6 +10,7 @@ public class ExportModel {
     private ArrayList<Category> categories;
     private String filepath;
 
+  //Contributing authors: R Legere
     public ExportModel(ObservableList<TransactionModel> observableList, ObservableList<Category> list) throws Exception {
         model = new ArrayList<TransactionModel>();
         model.addAll(observableList);
@@ -21,7 +22,7 @@ public class ExportModel {
         export();
     }
 
-    // Contributing authors: R Legere
+    // Contributing authors: R Legere, CS Cheang
     public void writeTransactions() {
         for (int i = 0; i < model.size(); i++) {
             TransactionModel nextTransaction = model.get(i);

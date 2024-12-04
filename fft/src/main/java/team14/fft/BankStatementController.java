@@ -1,7 +1,6 @@
 package team14.fft;
 
 import java.io.File;
-
 import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import javafx.util.Builder;
@@ -35,7 +34,6 @@ public class BankStatementController {
 	
 	//Contributing Authors: O Darrah
 	private void nextPage() {
-		
 		Main.getMainLayout().setCenter(new TransactionListController(model.getBankStatement()).getView());
 	}
 }

@@ -62,6 +62,7 @@ public class TransactionListModel {
 		return results;
 	}
 	
+	//Contributing authors: R Legere
 	public void addBuyers(String buyer) {
 		for(int i=0; i<getObservableTransactionModels().size(); i++) {
 				if(getObservableTransactionModels().get(i).getSelect().isSelected()) {

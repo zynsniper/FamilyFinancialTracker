@@ -3,8 +3,6 @@ package team14.fft;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.io.*;
-import java.nio.file.*;
 import java.text.SimpleDateFormat;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -18,7 +16,7 @@ public class ReadingExcel{
 	//Contributing authors: CS Cheang
 	public ReadingExcel() {}
 
-    public String[][] ReadingInput(String yourFilePath) throws IOException{
+    public static String[][] ReadingInput(String yourFilePath) throws IOException{
     	
 	    try(FileInputStream inputStream = new FileInputStream(yourFilePath);
 	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
@@ -76,7 +74,7 @@ public class ReadingExcel{
     	
     
     
-  //Contributing authors: W Elliott, O Darrah, CS Cheang
+  //Contributing authors: W Elliott, O Darrah
 
     public ArrayList<Transaction> TransactionReader(String filePath) throws IOException {
 
@@ -97,6 +95,7 @@ public class ReadingExcel{
                 Cell creditCell = row.getCell(3);
                 double amount = 0.0;
 
+                //Contributing authors: CS Cheang, R Legere
                 String formattedDate = dateFormat.format(dateCell.getDateCellValue());
                 String vendorName = row.getCell(1) != null ? row.getCell(1).getStringCellValue() : "Unknown Vendor";
                 String buyerName = "Unassigned Buyer";

@@ -7,7 +7,7 @@ public class Category {
     private final double PT_MULTIPLIER;
     private static ArrayList<Category> categories;
     
-    //Contributing authors: R Legere
+    //Contributing authors: R Legere, CS Cheang
     public Category(String nameIn){
     	catName = nameIn;
         PT_MULTIPLIER = 1;
@@ -35,7 +35,7 @@ public class Category {
         return PT_MULTIPLIER;
     }
   
-    //Contributing authors: R Legere, CS Cheang
+    //Contributing authors: CS Cheang
     public static Category findCategory(String name) {
         for (Category cat : categories) {
             if (cat.getCategory().equalsIgnoreCase(name)) {

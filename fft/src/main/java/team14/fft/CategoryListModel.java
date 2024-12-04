@@ -24,6 +24,7 @@ public class CategoryListModel {
 		return catStr;
 	}
 	
+	//Contributing authors: R Legere
 	public ObservableList<TransactionModel> getTransactions(){
 		return transactions;
 	}
@@ -41,12 +42,13 @@ public class CategoryListModel {
 		return cats;
 	}
 	
+	//Contributing authors: R Legere
 	public void addCats(String category) {
 		for(int i=0; i<getTransactions().size(); i++) {
 			if(getTransactions().get(i).getSelect().isSelected()) {
 					getTransactions().get(i).setCat(category);
 					getTransactions().get(i).getSelect().setSelected(false);
 			}
-	}
+		}
 	}
 }
