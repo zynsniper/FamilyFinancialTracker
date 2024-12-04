@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class CategoryList {
 	//Contributing Authors: W Elliott
 
-	private String filepath = "";
+	private String filepath = "target/categories.xlsx";
 	private ArrayList<Category> categoryList;
 	private ReadingExcel reader = new ReadingExcel();
 	
@@ -19,7 +19,7 @@ public class CategoryList {
 	}
 	
 	public void store() throws IOException {
-		WriterExcel excel = new WriterExcel("target/Category.xlsx");
+		WriterExcel excel = new WriterExcel(filepath);
 		excel.WriteCategory(categoryList);
 	}
 	

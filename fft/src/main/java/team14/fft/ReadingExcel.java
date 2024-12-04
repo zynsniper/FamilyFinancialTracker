@@ -2,9 +2,13 @@ package team14.fft;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.io.*;
+import java.nio.file.*;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 
@@ -12,7 +16,7 @@ public class ReadingExcel{
 	//Contributing authors: CS Cheang
 	public ReadingExcel() {}
 
-    public static String[][] ReadingInput(String yourFilePath) throws IOException{
+    public String[][] ReadingInput(String yourFilePath) throws IOException{
     	
 	    try(FileInputStream inputStream = new FileInputStream(yourFilePath);
 	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
@@ -47,45 +51,31 @@ public class ReadingExcel{
 	    }
     }
     
-    //Contributing authors: R Legere
-    public static String[][] readCategories(String filePath) throws IOException {
-    	String[][] arr;
-    	FileInputStream stream = new FileInputStream(filePath);
-    	XSSFWorkbook book = new XSSFWorkbook(stream);
-    	XSSFSheet sheet = book.getSheetAt(0);
-    	int rows = sheet.getLastRowNum();
-    	arr = new String[rows][2];
-    	for(int i=0; i<rows; i++) {
-    		XSSFRow row = sheet.getRow(i);
-    		for(int j=0; j<row.getLastCellNum(); j++) {
-    			arr[i][j] = row.getCell(j).getStringCellValue();
-    		}
-    	}
-    	return arr;
-    	
-    }
     
     
-    
-    /*
-    public ArrayList<Transaction> TransactionReader(String yourFilePath) throws IOException {
-    	
-    	ArrayList<Transaction> output = null;
+  //Contributing authors: W Elliott, O Darrah
 
-	    try(FileInputStream inputStream = new FileInputStream(null);
+    public ArrayList<Transaction> TransactionReader() throws IOException {
+    	
+    	String fileName = "target/transactionList.XLSX";
+    	Path filePath = Paths.get(fileName);
+    	ArrayList<Transaction> output = new ArrayList<Transaction>();
+
+	    try(FileInputStream inputStream = new FileInputStream(filePath.toString());
 	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
 	        	        
 	        
 	        XSSFSheet sheet = workBook.getSheetAt(0);
 	
 	        for(Row row: sheet) {
-	        	output.add(new Transaction(new Category(row.getCell(0).getStringCellValue()),
-	        							   new Vendor(row.getCell(1).getStringCellValue(), new Category(row.getCell(0).getStringCellValue())),
-	        							   new Buyer(row.getCell(2).getStringCellValue()),
-	        							   row.getCell(3).getNumericCellValue()));
+	        	output.add(new Transaction(row.getCell(0).getStringCellValue(),
+	        							   new Category(row.getCell(1).getStringCellValue()),
+	        							   new Vendor(row.getCell(2).getStringCellValue(), new Category(row.getCell(1).getStringCellValue())),
+	        							   new Buyer(row.getCell(3).getStringCellValue()),
+	        							   row.getCell(4).getNumericCellValue()));
 	        }
 	    }
 		return output;
     }
-	*/
+	
 }
