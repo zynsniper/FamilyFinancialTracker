@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javafx.scene.layout.Region;
 import javafx.util.Builder;
 
-//Contributing Authors: O Darrah
+//Contributing Authors: O Darrah, CS Cheang
 public class TransactionListController {
 	private Builder<Region> builder;
 	
