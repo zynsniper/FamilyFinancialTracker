@@ -8,7 +8,7 @@ import javafx.util.Builder;
 
 //Contributing Authors: O Darrah, CS Cheang
 public class TransactionListController {
-	private Builder<Region> builder;
+	private TransactionListViewBuilder builder;
 	
 	//REMOVE TEST STATEMENTS LATER!!
 	//Contributing Authors: O Darrah
@@ -46,7 +46,7 @@ public class TransactionListController {
 	
 	//Contributing authors: R Legere, O Darrah
 	public void nextPage() {
-		Main.getMainLayout().setCenter(new CategoryListController().getView());
+		Main.getMainLayout().setCenter(new CategoryListController(builder.model.getObservableTransactionModels()).getView());
 	}
 }
 

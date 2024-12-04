@@ -1,13 +1,17 @@
 package team14.fft;
 
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -15,13 +19,14 @@ import javafx.util.Builder;
 
 public class CategoryListViewBuilder implements Builder<Region>{
 	CategoryListModel model;
+	ChoiceBox<Category> cats;
 	
-	public CategoryListViewBuilder() {
-		model = new CategoryListModel();
+	public CategoryListViewBuilder(ObservableList<TransactionModel> list) {
+		model = new CategoryListModel(list);
 	}
 	//Contributing authors: R Legere
 	public Region build() {
-		VBox build = new VBox(labs(), catFormat(), noCatList(), buttons());
+		VBox build = new VBox(labs(), catBox(), noCatList(), buttons());
 		build.setSpacing(10);
 		build.setPrefHeight(300);
 		build.setPrefWidth(200);
@@ -51,34 +56,46 @@ public class CategoryListViewBuilder implements Builder<Region>{
 	
 	//Contributing authors: R Legere
 	private Node catBox() {
-		ChoiceBox<Category> cats = new ChoiceBox<>();
-		Category test = new Category("Test category");
+		cats = new ChoiceBox<>();
 		cats.setItems(model.getList());
 		return cats;
 	}
 	
-	//Contributing authors: R Legere
-	private Node catText() {
-		TextField addCat = new TextField();
-		addCat.setPrefWidth(100);
-		addCat.textProperty().bindBidirectional(model.catStr());
-		return addCat;
-	}
-	
-	//Contributing authors: R Legere
-	private Node catButton() {
-		Button addCat = new Button("Add");
-		addCat.setOnAction(e -> model.addCat());
-		return addCat;
-	}
-	
-	//Contributing authors: R Legere
-	private Node noCatList() {
-		VBox toReturn = new VBox();
-				CheckBox box = new CheckBox("Example transaction");
-				//box.setOnAction()
-				toReturn.getChildren().add(box);
-		return toReturn;
+	//Contributing authors: R Legere, O Darrah
+	private TableView<TransactionModel> noCatList() {
+		@SuppressWarnings("unchecked")
+			TableView<TransactionModel> results = new TableView<>(model.getTransactions());
+			
+			TableColumn<TransactionModel, String> dateColumn = new TableColumn<>("Date");
+	        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+	        dateColumn.setSortable(true);
+
+	        TableColumn<TransactionModel, ?> buyerColumn = new TableColumn<>("Buyer");
+	        buyerColumn.setCellValueFactory(new PropertyValueFactory<>("buyer"));
+	        buyerColumn.setSortable(true);
+
+	        TableColumn<TransactionModel, ?> vendorColumn = new TableColumn<>("Vendor");
+	        vendorColumn.setCellValueFactory(new PropertyValueFactory<>("vendor"));
+	        vendorColumn.setSortable(true);
+	        
+	        TableColumn<TransactionModel, ?> totalColumn = new TableColumn<>("Cost");
+	        totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
+	        totalColumn.setSortable(true);
+	        
+	        TableColumn<TransactionModel, Boolean> selectColumn = new TableColumn<>("Select");
+	        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+	        
+	        TableColumn<TransactionModel, ?> catColumn = new TableColumn<>("Category");
+	        catColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+	        
+	        results.getColumns().add(selectColumn);
+	        results.getColumns().add(dateColumn);
+	        results.getColumns().add(buyerColumn);
+	        results.getColumns().add(vendorColumn);
+	        results.getColumns().add(totalColumn);
+	        results.getColumns().add(catColumn);
+	       
+			return results;
 	}
 	
 	//Contributing authors: R Legere
@@ -93,7 +110,10 @@ public class CategoryListViewBuilder implements Builder<Region>{
 	private Node assignButton() {
 		Button assign = new Button("Assign");
 		assign.setPrefWidth(100);
-		//assign.setOnAction(null);
+		assign.setOnAction(e -> {
+			
+		model.addCats(cats.getValue().toString());
+	    noCatList().refresh();});
 		return assign;
 	}
 	
@@ -102,12 +122,6 @@ public class CategoryListViewBuilder implements Builder<Region>{
 		HBox buttons = new HBox(nextButton(), assignButton());
 		buttons.setSpacing(10);
 		return buttons;
-	}
-	
-	//Contributing authors: R Legere
-	private Node catFormat() {
-		HBox catFormat = new HBox(catBox(), catText(), catButton());
-		return catFormat;
 	}
 	
 	

@@ -18,7 +18,9 @@ public class TransactionModel {
     public TransactionModel(Transaction transaction){
     	date = new SimpleStringProperty(transaction.getDate());
         vendor = new SimpleStringProperty(transaction.getVendor().toString());
-        //category = new SimpleStringProperty(transaction.getCat().toString());
+        try {
+        category = new SimpleStringProperty(transaction.getCat().toString());
+        }catch(NullPointerException e) {category = new SimpleStringProperty("");}
         buyer = new SimpleStringProperty(transaction.getBuyer().toString());
         total = new SimpleDoubleProperty(transaction.getTotal());
         select = new CheckBox();
@@ -46,7 +48,7 @@ public class TransactionModel {
     }
 
     //Contributing authors: O Darrah
-    public String getCategoryy(){
+    public String getCategory(){
         return category.get();
     }
     
@@ -57,6 +59,10 @@ public class TransactionModel {
     
     public void setBuyer(String buyer) {
     	this.buyer.set(buyer);
+    }
+    
+    public void setCat(String cat) {
+    	this.category.set(cat);
     }
     
 }

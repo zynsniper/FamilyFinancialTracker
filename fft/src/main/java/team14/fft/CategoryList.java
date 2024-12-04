@@ -11,7 +11,7 @@ public class CategoryList {
 	private ArrayList<Category> categoryList;
 	private ReadingExcel reader = new ReadingExcel();
 	
-	public CategoryList() throws IOException {
+	/*public CategoryList() throws IOException {
 		categoryList = new ArrayList<Category>();
 		try {
 			String []storedCategories = reader.ReadingInput(filepath)[0]; 
@@ -19,6 +19,16 @@ public class CategoryList {
 			categoryList.add(new Category(nameIn));
 		}
 		}catch(FileNotFoundException e) {}
+	}*/
+	
+	//Contributing authors: R Legere
+	public CategoryList() {
+		categoryList = new ArrayList<Category>();
+		categoryList.add(new Category("Grocery", 3));
+		categoryList.add(new Category("Gas", 2));
+		categoryList.add(new Category("Dining", 5));
+		categoryList.add(new Category("Recurring", 4));
+		categoryList.add(new Category("Other"));
 	}
 	
 	public void store() throws IOException {
