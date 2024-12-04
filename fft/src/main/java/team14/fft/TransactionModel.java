@@ -55,4 +55,8 @@ public class TransactionModel {
         return select;
     }
     
+    public void setBuyer(String buyer) {
+    	this.buyer.set(buyer);
+    }
+    
 }

@@ -3,7 +3,10 @@ package team14.fft;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.*;
+import java.nio.file.*;
 import java.text.SimpleDateFormat;
+
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.ss.usermodel.Cell;
@@ -76,37 +79,37 @@ public class ReadingExcel{
   //Contributing authors: W Elliott, O Darrah, CS Cheang
 
     public ArrayList<Transaction> TransactionReader(String filePath) throws IOException {
-    	
-    	String fileName = "target/transactionList.XLSX";
-    	//Path filePath = Paths.get(fileName);
-    	ArrayList<Transaction> output = new ArrayList<Transaction>();
 
-	    try(FileInputStream inputStream = new FileInputStream(filePath.toString());
-	        XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
-	        XSSFSheet sheet = workBook.getSheetAt(0);
-	        
-	        
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	        
-	        for(Row row: sheet) {
-	        	Cell dateCell = row.getCell(0);
-	        	Cell debitCell = row.getCell(2);
-	        	Cell creditCell = row.getCell(3);
-	        	double amount = 0.0;
-	        	
-	        	String formattedDate = dateFormat.format(dateCell.getDateCellValue());
-	        	String vendorName = row.getCell(1) != null ? row.getCell(1).getStringCellValue() : "Unknown Vendor";
-	        	String buyerName = " ";
-	        	if (debitCell != null) {
-	        		amount = debitCell.getNumericCellValue();
-	            } else {
-	            	amount = creditCell.getNumericCellValue() * -1;
-	        	}
-	        	
-	        	output.add(new Transaction(formattedDate, new Vendor(vendorName), new Buyer(buyerName), amount));
-	        }
-	    }
-		return output;
+        String fileName = "target/transactionList.XLSX";
+        //Path filePath = Paths.get(fileName);
+        ArrayList<Transaction> output = new ArrayList<Transaction>();
+
+        try(FileInputStream inputStream = new FileInputStream(filePath.toString());
+            XSSFWorkbook workBook = new XSSFWorkbook(inputStream)){;
+            XSSFSheet sheet = workBook.getSheetAt(0);
+
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            for(Row row: sheet) {
+                Cell dateCell = row.getCell(0);
+                Cell debitCell = row.getCell(2);
+                Cell creditCell = row.getCell(3);
+                double amount = 0.0;
+
+                String formattedDate = dateFormat.format(dateCell.getDateCellValue());
+                String vendorName = row.getCell(1) != null ? row.getCell(1).getStringCellValue() : "Unknown Vendor";
+                String buyerName = " ";
+                if (debitCell != null) {
+                    amount = debitCell.getNumericCellValue();
+                } else {
+                    amount = creditCell.getNumericCellValue() * -1;
+                }
+
+                output.add(new Transaction(formattedDate, new Vendor(vendorName), new Buyer(buyerName), amount));
+            }
+        }
+        return output;
     }
 	
 }

@@ -22,6 +22,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	private Runnable nextHandler;
 	String buyer;
 	TransactionListModel model;
+	ChoiceBox<Buyer> buyers;
 	
 	//Contributing authors: R Legere
 	public TransactionListViewBuilder(Runnable next, Statement statement) {
@@ -66,7 +67,9 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	private Node assignButton() {
 		Button results = new Button("Assign");
 		results.setPrefWidth(100);
-		results.setOnAction(e->model.getSelectedTransactions());
+		results.setOnAction(e -> {
+		    model.addBuyers(buyers.getValue().toString());
+		    listOfTransactions().refresh();});
 		return results;
 	}
 	private Node addBuyerField() {
@@ -103,10 +106,10 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	
 	//Contributing Authors: O Darrah
 	private Node buyerMenu() {
-		ChoiceBox<Buyer> results = new ChoiceBox<Buyer>();
-		results.setItems(model.getList());
-		results.setPrefWidth(100);
-		return results;
+		buyers = new ChoiceBox<Buyer>();
+		buyers.setItems(model.getList());
+		buyers.setPrefWidth(100);
+		return buyers;
 	}
 	
 	//Contributing Authors: O Darrah

@@ -62,4 +62,13 @@ public class TransactionListModel {
 		return results;
 	}
 	
+	public void addBuyers(String buyer) {
+		for(int i=0; i<getObservableTransactionModels().size(); i++) {
+				if(getObservableTransactionModels().get(i).getSelect().isSelected()) {
+						getObservableTransactionModels().get(i).setBuyer(buyer);
+						getObservableTransactionModels().get(i).getSelect().setSelected(false);
+				}
+		}
+	}
+	
 }
