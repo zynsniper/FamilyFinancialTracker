@@ -1,5 +1,6 @@
 package team14.fft;
 
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -64,7 +66,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	private Node assignButton() {
 		Button results = new Button("Assign");
 		results.setPrefWidth(100);
-		//results.setOnAction();
+		results.setOnAction(e->model.getSelectedTransactions());
 		return results;
 	}
 	private Node addBuyerField() {
@@ -103,11 +105,13 @@ public class TransactionListViewBuilder implements Builder<Region> {
 	private Node buyerMenu() {
 		ChoiceBox<Buyer> results = new ChoiceBox<Buyer>();
 		results.setItems(model.getList());
+		results.setPrefWidth(100);
 		return results;
 	}
 	
 	//Contributing Authors: O Darrah
-	private Node listOfTransactions(){
+	@SuppressWarnings("unchecked")
+	private TableView<TransactionModel> listOfTransactions(){
 		TableView<TransactionModel> results = new TableView<>(model.getObservableTransactionModels());
 		
 		TableColumn<TransactionModel, String> dateColumn = new TableColumn<>("Date");
@@ -126,7 +130,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
         totalColumn.setSortable(true);
         
-        TableColumn<TransactionModel, ?> selectColumn = new TableColumn<>("Select");
+        TableColumn<TransactionModel, Boolean> selectColumn = new TableColumn<>("Select");
         selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
         
         results.getColumns().add(selectColumn);
@@ -134,7 +138,7 @@ public class TransactionListViewBuilder implements Builder<Region> {
         results.getColumns().add(buyerColumn);
         results.getColumns().add(vendorColumn);
         results.getColumns().add(totalColumn);
-        
+       
 		return results;
 	}
 	
