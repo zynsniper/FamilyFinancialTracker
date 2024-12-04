@@ -32,7 +32,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFx"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ApachePoi"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ApachePOI"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -12,7 +12,7 @@ public class WriterExcel {
 	private Workbook workbook = new XSSFWorkbook();
 	private Sheet sheet;
 	
-	public WriterExel(String fileName) {
+	public WriterExcel(String fileName) {
 		this.fileName = fileName;
 		filePath = Paths.get(fileName);
 		sheet = workbook.createSheet(fileName);

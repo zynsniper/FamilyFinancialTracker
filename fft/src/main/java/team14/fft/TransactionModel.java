@@ -17,7 +17,7 @@ public class TransactionModel {
     //Contributing authors: O Darrah
     public TransactionModel(Transaction transaction){
     	date = new SimpleStringProperty(transaction.getDate());
-        vendor = new SimpleStringProperty(transaction.getVen().getVendor());
+        vendor = new SimpleStringProperty(transaction.getVendor());
         category = new SimpleStringProperty(transaction.getCat().toString());
         buyer = new SimpleStringProperty(transaction.getBuyer().getBuyerName());
         total = new SimpleDoubleProperty(transaction.getTotal());
