@@ -9,10 +9,11 @@ public class Transaction {
     private double total;
     private boolean debit;
 
-    //Contributing authors: R Legere, W Elliott
-    public Transaction(String date, Vendor venIn, double totalIn){
+    //Contributing authors: R Legere, W Elliott, CS Cheang
+    public Transaction(String date, Vendor venIn, Buyer buyerIn, double totalIn){
     	this.date = date;
         vendor = venIn;
+        buyer = buyerIn;
         total = totalIn;
         if(total < 0){debit = true;}else{debit = false;}
     }

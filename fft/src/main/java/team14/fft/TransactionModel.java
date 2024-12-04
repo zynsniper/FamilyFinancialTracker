@@ -19,7 +19,7 @@ public class TransactionModel {
     	date = new SimpleStringProperty(transaction.getDate());
         vendor = new SimpleStringProperty(transaction.getVendor().toString());
         //category = new SimpleStringProperty(transaction.getCat().toString());
-        //buyer = new SimpleStringProperty(transaction.getBuyer().toString());
+        buyer = new SimpleStringProperty(transaction.getBuyer().toString());
         total = new SimpleDoubleProperty(transaction.getTotal());
         select = new CheckBox();
     }

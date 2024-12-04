@@ -26,7 +26,7 @@ public class FileStatement extends Statement{
 			String buyerNameFromUI = transcModel.buyerStr().toString();
 			String categoryNameFromUI = catModel.catStr().toString();
 			Category category = new Category(categoryNameFromUI);
-			
+		
 			for(String[] row: data) {
 				String date = row[0];
                 String vendorName = row[1];
