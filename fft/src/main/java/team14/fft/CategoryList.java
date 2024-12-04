@@ -31,4 +31,8 @@ public class CategoryList {
 		categoryList.add(catIn);
 	}
 	
+	public ArrayList<Category> getList(){
+		return categoryList;
+	}
+	
 }
